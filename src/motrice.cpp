@@ -29,6 +29,9 @@ MeniniDevice* menini_reset(MeniniDevice* device){
 
     device->cabina.x = device->margineds;
     device->cabina.y = device->marginess;
+    device->cabina.w = device->pianale.w / 3;
+    device->cabina.h = device->pianale.h * 4;
+    
 
     device->vetro.x = device->margineds;
     device->vetro.y = device->marginess;
@@ -45,6 +48,38 @@ MeniniDevice* menini_reset(MeniniDevice* device){
     
 }
 
+/**
+ * Controlla i vincoli per il disegno.
+ *
+ * @param device struttura contenente i parametri dell'svg
+ * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
+ */
+
+int menini_check_pianale_w(MeniniDevice* device, int new_w){
+    if (device->ruotasx.x > new_w / 2 || device->ruotadx.x < new_w / 2){
+        return 1;
+    }else{
+        return 0;
+    }
+}
+
+/**
+ * Setta le dimensioni dell'immagine
+ *
+ * @param device contiene i parametri dell'immagine
+ * @param new_w è il nuovo parametro che si vuole inserire
+ * @return 0 se il set è andato a buon fine, 1 altrimenti
+ */
+
+int menini_set_pianale_w(MeniniDevice* device, float new_w){
+    if (menini_check_pianale_w(device, new_w)==1){
+        return 1;
+    }
+
+    device->pianale.w = new_w;
+    menini_reset(device);
+    return 0;
+}
 
 /**
  * Controlla i vincoli per il disegno.
@@ -52,123 +87,130 @@ MeniniDevice* menini_reset(MeniniDevice* device){
  * @param device struttura contenente i parametri dell'svg
  * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
  */
-int menini_check(MeniniDevice* device){
-    int ret;
-    ret = 0;
-    if (device->cabina.w > device->pianale.w){
-        cout << "ERRORE: La cabina deve essere lunga al massimo la metà del pianale\n";
-        ret = 1;
-    }
-    if (device->ruotadx.r > device->pianale.h){
-        cout << "ERRORE: Le ruote devono avere raggio inferiore all'altezza del pianale\n";
-        ret = 1;
-    }
-    if (device->ruotasx.x > device->pianale.w / 3){
-        cout << "ERRORE: La ruota di sinistra deve essare nel primo terzo del pianale\n";
-        ret = 1;
-    }
-    if (device->ruotadx.x < 2 * device->pianale.w / 3){
-        cout << "ERRORE: La ruota di sinistra deve essare nell'ultimo terzo del pianale\n";
-        ret = 1;
-    }
 
-    if (ret == 0){
-        return 0;
-        menini_reset(device);
+int menini_check_pianale_h(MeniniDevice* device, int new_h){
+    if (device->ruotadx.r > new_h){
+        return 1;
     }else{
+        return 0;
+    }
+}
+
+/**
+ * Setta le dimensioni dell'immagine
+ *
+ * @param device contiene i parametri dell'immagine
+ * @param new_h è il nuovo parametro che si vuole inserire
+ * @return 0 se il set è andato a buon fine, 1 altrimenti
+ */
+
+int menini_set_pianale_h(MeniniDevice* device, float new_h){
+    if (menini_check_pianale_w(device, new_h)==1){
         return 1;
     }
+
+    device->pianale.h = new_h;
+    menini_reset(device);
+    return 0;
+}
+
+/**
+ * Controlla i vincoli per il disegno.
+ *
+ * @param device struttura contenente i parametri dell'svg
+ * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
+ */
+
+int menini_check_raggi(MeniniDevice* device, int new_r){
+    if (new_r > device->pianale.h){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 /**
  * Setta le dimensioni dell'immagine
  *
  * @param device contiene i parametri dell'immagine
+ * @param new_r è il nuovo parametro che si vuole inserire
+ * @return 0 se il set è andato a buon fine, 1 altrimenti
  */
 
-void menini_set_pianale_w(MeniniDevice* device){
-    cout << "Quanto deve essere lungo il pianale?";
-    cin >> device->pianale.w;
+int menini_set_raggi(MeniniDevice* device, float new_r){
+    if (menini_check_raggi(device, new_r)==1){
+        return 1;
+    }
 
-    menini_check(device);
+    device->ruotadx.r = new_r;
+    menini_reset(device);
+    return 0;
+}
+
+/**
+ * Controlla i vincoli per il disegno.
+ *
+ * @param device struttura contenente i parametri dell'svg
+ * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
+ */
+
+int menini_check_ruotasx(MeniniDevice* device, int new_x){
+    if (new_x > device->pianale.w / 3){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 /**
  * Setta le dimensioni dell'immagine
  *
  * @param device contiene i parametri dell'immagine
+ * @param new_x è il nuovo parametro che si vuole inserire
+ * @return 0 se il set è andato a buon fine, 1 altrimenti
  */
 
-void menini_set_pianale_h(MeniniDevice* device){
-    cout << "Quanto deve essere alto il pianale?";
-    cin >> device->pianale.h;
-    
-    menini_check(device);
+int menini_set_ruotasx(MeniniDevice* device, float new_x){
+    if (menini_check_ruotasx(device, new_x)==1){
+        return 1;
+    }
+
+    device->ruotasx.x = new_x;
+    menini_reset(device);
+    return 0;
+}
+
+/**
+ * Controlla i vincoli per il disegno.
+ *
+ * @param device struttura contenente i parametri dell'svg
+ * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
+ */
+
+int menini_check_ruotadx(MeniniDevice* device, int new_x){
+    if (new_x < 2 * device->pianale.w / 3){
+        return 1;
+    }else{
+        return 0;
+    }
 }
 
 /**
  * Setta le dimensioni dell'immagine
  *
  * @param device contiene i parametri dell'immagine
+ * @param new_x è il nuovo parametro che si vuole inserire
+ * @return 0 se il set è andato a buon fine, 1 altrimenti
  */
 
-void menini_set_cabina_w(MeniniDevice* device){
-    cout << "Quanto deve essere larga la cabina?";
-    cin >> device->cabina.w;
-    
-    menini_check(device);
-}
+int menini_set_ruotadx(MeniniDevice* device, float new_x){
+    if (menini_check_ruotadx(device, new_x)==1){
+        return 1;
+    }
 
-/**
- * Setta le dimensioni dell'immagine
- *
- * @param device contiene i parametri dell'immagine
- */
-
-void menini_set_cabina_h(MeniniDevice* device){
-    cout << "Quanto deve essere alta la cabina?";
-    cin >> device->cabina.h;
-    
-    menini_check(device);
-}
-
-/**
- * Setta le dimensioni dell'immagine
- *
- * @param device contiene i parametri dell'immagine
- */
-
-void menini_set_ruotasx(MeniniDevice* device){
-    cout << "A che distanza dalla linea fronale della cabina deve essere posizionata la ruota anteriore?";
-    cin >> device->ruotasx.x;
-    
-    menini_check(device);
-}
-
-/**
- * Setta le dimensioni dell'immagine
- *
- * @param device contiene i parametri dell'immagine
- */
-
-void menini_set_ruotadx(MeniniDevice* device){
-    cout << "A che distanza dalla linea fronale della cabina deve essere posizionata la ruota posteriore?";
-    cin >> device->ruotadx.x;
-    
-    menini_check(device);
-}
-
-/**
- * Setta le dimensioni dell'immagine
- *
- * @param device contiene i parametri dell'immagine
- */
-
-void menini_set_raggi(MeniniDevice* device){
-    cout << "Qual è il raggio delle ruote?";
-    cin >> device->ruotadx.r;
-    
-    menini_check(device);
+    device->ruotadx.x = new_x;
+    menini_reset(device);
+    return 0;
 }
 
 
@@ -181,36 +223,46 @@ void menini_set_raggi(MeniniDevice* device){
 
 MeniniDevice* menini_set(MeniniDevice* device){
     cout << "Creazione di un nuovo Device: \n";
+    float r = 0;
+    int control;
+
     cout << "Quanto deve essere lungo il pianale?";
-    cin >> device->pianale.w;
+    cin >> device->pianale.w; //Non può fallire in quanto non ho definito nessun altro parametro
+    
     cout << "Quanto deve essere alto il pianale?";
-    cin >> device->pianale.h;
-    cout << "Quanto deve essere larga la cabina?";
-    cin >> device->cabina.w;
-    cout << "Quanto deve essere alta la cabina?";
-    cin >> device->cabina.h;
+    cin >> device->pianale.h; //Non può fallire in quanto non ho definito nessun altro parametro
+    
     cout << "A che distanza dalla linea fronale della cabina deve essere posizionata la ruota anteriore?";
-    cin >> device->ruotasx.x;
+    cin >> r;
+    control = menini_set_ruotasx(device,r);
+    while(control==1){
+        cout << "ERRORE: La ruota di sinistra deve essere nel primo terzo del pianale\n";
+        cout << "A che distanza dalla linea fronale della cabina deve essere posizionata la ruota anteriore?";
+        cin >> r;
+        control = menini_set_ruotasx(device,r);
+    }
+
     cout << "A che distanza dalla linea fronale della cabina deve essere posizionata la ruota posteriore?";
-    cin >> device->ruotadx.x;
+    cin >> r;
+    control = menini_set_ruotadx(device,r);
+    while(control==1){
+        cout << "ERRORE: La ruota di destra deve essere nell'ultimo terzo del pianale\n";
+        cout << "A che distanza dalla linea fronale della cabina deve essere posizionata la ruota posteriore?";
+        cin >> r;
+        control = menini_set_ruotadx(device,r);
+    }
+
     cout << "Qual è il raggio delle ruote?";
-    cin >> device->ruotadx.r;
-    device->ruotasx.r = device->ruotadx.r;
+    cin >> r;
+    control = menini_set_raggi(device,r);
+    while(control==1){
+        cout << "ERRORE: Le ruote devono avere raggio inferiore all'altezza del pianale\n";
+        cout << "Qual è il raggio delle ruote?";
+        cin >> r;
+        control = menini_set_raggi(device,r);
+    }
 
-    device->cabina.x = device->margineds;
-    device->cabina.y = device->marginess;
-
-    device->vetro.x = device->margineds;
-    device->vetro.y = device->marginess;
-    device->vetro.w = device->cabina.w /2;
-    device->vetro.h = device->cabina.h /3;
-
-    device->pianale.x = device->margineds;
-    device->pianale.y = device->marginess + device->cabina.h;
-    
-    device->ruotasx.y = device->pianale.y + device->pianale.h; 
-    device->ruotadx.y = device->pianale.y + device->pianale.h; 
-    
+    menini_reset(device);
     return device;
 }
 //std::string menini_to_svg (MeniniDevice* device){}

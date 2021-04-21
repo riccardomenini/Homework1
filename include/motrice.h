@@ -47,23 +47,27 @@ MeniniDevice* menini_init();
 
 MeniniDevice* menini_reset(MeniniDevice*);
 
-int menini_check(MeniniDevice*);
-
-void menini_set_pianale_w(MeniniDevice*);
-
-void menini_set_pianale_h(MeniniDevice*);
-
-void menini_set_cabina_w(MeniniDevice*);
-
-void menini_set_cabina_h(MeniniDevice*);
-
-void menini_set_ruotasx(MeniniDevice*);
-
-void menini_set_ruotadx(MeniniDevice*);
-
-void menini_set_raggis(MeniniDevice*);
-
 MeniniDevice* menini_set(MeniniDevice*);
+
+int menini_check_pianale_w(MeniniDevice*);
+
+int menini_set_pianale_w(MeniniDevice*, float);
+
+int menini_check_pianale_h(MeniniDevice*, int);
+
+int menini_set_pianale_h(MeniniDevice*, float);
+
+int menini_check_raggi(MeniniDevice*, int new_r);
+
+int menini_set_raggi(MeniniDevice*, float);
+
+int menini_check_ruotasx(MeniniDevice*, int);
+
+int menini_set_ruotasx(MeniniDevice*, float);
+
+int menini_check_ruotadx(MeniniDevice*, int);
+
+int menini_set_ruotadx(MeniniDevice*, float);
 
 //std::string menini_to_svg (MeniniDevice*);
 
