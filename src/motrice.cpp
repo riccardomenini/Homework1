@@ -4,11 +4,12 @@
 
 using namespace std;
 
-/*
- *  
+/**
+ * Controlla i vincoli per il disegno.
  *
+ * @param device struttura contenente i parametri dell'svg
+ * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
  */
-
 int menini_init(MeniniDevice* device){
     int ret;
     ret = 0;
@@ -31,6 +32,13 @@ int menini_init(MeniniDevice* device){
     return ret;
 }
 
+/**
+ * Setta le dimensioni dell'immagine
+ *
+ * @param device contiene i parametri dell'immagine
+ * @return un puntatore a device
+ */
+
 MeniniDevice* menini_set(MeniniDevice* device){
     cout << "Creazione di un nuovo Device: \n";
     cout << "Quanto deve essere lungo il pianale?";
@@ -49,7 +57,6 @@ MeniniDevice* menini_set(MeniniDevice* device){
     cin >> device->ruotadx.r;
     device->ruotasx.r = device->ruotadx.r;
 
-    //Aggiunta margini
     float margineds = device->w / 10;
     float marginess = device->w / 10;
 
@@ -68,4 +75,5 @@ MeniniDevice* menini_set(MeniniDevice* device){
     device->ruotadx.y = device->pianale.y + device->pianale.h; 
 
     device->w = 2 * marginess + device->cabina.w + device->pianale.w + device->ruotadx.r;
+    return device;
 }
