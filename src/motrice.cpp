@@ -14,19 +14,19 @@ int menini_init(MeniniDevice* device){
     int ret;
     ret = 0;
     if (device->cabina.w > device->pianale.w){
-        cout << "ERRORE: La cabina deve essere lunga al massimo la metà del pianale";
+        cout << "ERRORE: La cabina deve essere lunga al massimo la metà del pianale\n";
         ret = 1;
     }
     if (device->ruotadx.r > device->pianale.h){
-        cout << "ERRORE: Le ruote devono avere raggio inferiore all'altezza del pianale";
+        cout << "ERRORE: Le ruote devono avere raggio inferiore all'altezza del pianale\n";
         ret = 1;
     }
     if (device->ruotasx.x > device->pianale.w / 3){
-        cout << "ERRORE: La ruota di sinistra deve essare nel primo terzo del pianale";
+        cout << "ERRORE: La ruota di sinistra deve essare nel primo terzo del pianale\n";
         ret = 1;
     }
-    if (device->ruotadx.x > 2 * device->pianale.w / 3){
-        cout << "ERRORE: La ruota di sinistra deve essare nell'ultimo terzo del pianale";
+    if (device->ruotadx.x < 2 * device->pianale.w / 3){
+        cout << "ERRORE: La ruota di sinistra deve essare nell'ultimo terzo del pianale\n";
         ret = 1;
     }
     return ret;
@@ -75,5 +75,13 @@ MeniniDevice* menini_set(MeniniDevice* device){
     device->ruotadx.y = device->pianale.y + device->pianale.h; 
 
     device->w = 2 * marginess + device->cabina.w + device->pianale.w + device->ruotadx.r;
-    return device;
+
+    if (menini_init(device) == 0){
+        return device;
+    }else{
+        delete(device);
+        return NULL;
+    }
 }
+
+//std::string menini_to_svg (MeniniDevice* device){}

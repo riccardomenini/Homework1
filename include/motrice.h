@@ -1,5 +1,6 @@
 #ifndef MOTRICE_H
 #define MOTRICE_H
+#include <string>
 
 
 struct MeniniPianale {
@@ -39,6 +40,10 @@ struct MeniniDevice{
     MeniniRuota ruotadx;
 };
 
+MeniniDevice* menini_set(MeniniDevice*);
 
+//std::string menini_to_svg (MeniniDevice*);
+
+int menini_init(MeniniDevice*);
 
 #endif 

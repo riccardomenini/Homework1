@@ -11,9 +11,10 @@ int main() {
     while (a != 'q'){
         switch (a)
         {
-        case 'l':       //caricamento   
+        case 'l':       //caricamento 
             break;
         case 'c':       //creazione
+            menini_set(device);  
             break;
         case 's':       //salvataggio
             break;
