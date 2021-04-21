@@ -129,52 +129,28 @@ tests/CMakeFiles/catch2Test.dir/testCxxExamples.cpp.o.provides: tests/CMakeFiles
 tests/CMakeFiles/catch2Test.dir/testCxxExamples.cpp.o.provides.build: tests/CMakeFiles/catch2Test.dir/testCxxExamples.cpp.o
 
 
-tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o: tests/CMakeFiles/catch2Test.dir/flags.make
-tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o: ../src/MyFraction.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/riccardo/Homework1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o"
-	cd /home/riccardo/Homework1/build/tests && /usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o -c /home/riccardo/Homework1/src/MyFraction.cpp
+tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o: tests/CMakeFiles/catch2Test.dir/flags.make
+tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o: ../src/motrice.cpp
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/riccardo/Homework1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_4) "Building CXX object tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o"
+	cd /home/riccardo/Homework1/build/tests && /usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o -c /home/riccardo/Homework1/src/motrice.cpp
 
-tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.i"
-	cd /home/riccardo/Homework1/build/tests && /usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/riccardo/Homework1/src/MyFraction.cpp > CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.i
+tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.i: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/catch2Test.dir/__/src/motrice.cpp.i"
+	cd /home/riccardo/Homework1/build/tests && /usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/riccardo/Homework1/src/motrice.cpp > CMakeFiles/catch2Test.dir/__/src/motrice.cpp.i
 
-tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.s"
-	cd /home/riccardo/Homework1/build/tests && /usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/riccardo/Homework1/src/MyFraction.cpp -o CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.s
+tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.s: cmake_force
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/catch2Test.dir/__/src/motrice.cpp.s"
+	cd /home/riccardo/Homework1/build/tests && /usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/riccardo/Homework1/src/motrice.cpp -o CMakeFiles/catch2Test.dir/__/src/motrice.cpp.s
 
-tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o.requires:
+tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o.requires:
 
-.PHONY : tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o.requires
+.PHONY : tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o.requires
 
-tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o.provides: tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o.requires
-	$(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o.provides.build
-.PHONY : tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o.provides
+tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o.provides: tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o.requires
+	$(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o.provides.build
+.PHONY : tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o.provides
 
-tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o.provides.build: tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o
-
-
-tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o: tests/CMakeFiles/catch2Test.dir/flags.make
-tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o: ../src/CxxExamples.cpp
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --progress-dir=/home/riccardo/Homework1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Building CXX object tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o"
-	cd /home/riccardo/Homework1/build/tests && /usr/bin/x86_64-linux-gnu-g++-7  $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -o CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o -c /home/riccardo/Homework1/src/CxxExamples.cpp
-
-tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.i: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Preprocessing CXX source to CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.i"
-	cd /home/riccardo/Homework1/build/tests && /usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -E /home/riccardo/Homework1/src/CxxExamples.cpp > CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.i
-
-tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.s: cmake_force
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green "Compiling CXX source to assembly CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.s"
-	cd /home/riccardo/Homework1/build/tests && /usr/bin/x86_64-linux-gnu-g++-7 $(CXX_DEFINES) $(CXX_INCLUDES) $(CXX_FLAGS) -S /home/riccardo/Homework1/src/CxxExamples.cpp -o CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.s
-
-tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o.requires:
-
-.PHONY : tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o.requires
-
-tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o.provides: tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o.requires
-	$(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o.provides.build
-.PHONY : tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o.provides
-
-tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o.provides.build: tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o
+tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o.provides.build: tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o
 
 
 # Object files for target catch2Test
@@ -182,8 +158,7 @@ catch2Test_OBJECTS = \
 "CMakeFiles/catch2Test.dir/catch2Main.cpp.o" \
 "CMakeFiles/catch2Test.dir/testMyFraction.cpp.o" \
 "CMakeFiles/catch2Test.dir/testCxxExamples.cpp.o" \
-"CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o" \
-"CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o"
+"CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o"
 
 # External object files for target catch2Test
 catch2Test_EXTERNAL_OBJECTS =
@@ -191,11 +166,10 @@ catch2Test_EXTERNAL_OBJECTS =
 tests/catch2Test: tests/CMakeFiles/catch2Test.dir/catch2Main.cpp.o
 tests/catch2Test: tests/CMakeFiles/catch2Test.dir/testMyFraction.cpp.o
 tests/catch2Test: tests/CMakeFiles/catch2Test.dir/testCxxExamples.cpp.o
-tests/catch2Test: tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o
-tests/catch2Test: tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o
+tests/catch2Test: tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o
 tests/catch2Test: tests/CMakeFiles/catch2Test.dir/build.make
 tests/catch2Test: tests/CMakeFiles/catch2Test.dir/link.txt
-	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/riccardo/Homework1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_6) "Linking CXX executable catch2Test"
+	@$(CMAKE_COMMAND) -E cmake_echo_color --switch=$(COLOR) --green --bold --progress-dir=/home/riccardo/Homework1/build/CMakeFiles --progress-num=$(CMAKE_PROGRESS_5) "Linking CXX executable catch2Test"
 	cd /home/riccardo/Homework1/build/tests && $(CMAKE_COMMAND) -E cmake_link_script CMakeFiles/catch2Test.dir/link.txt --verbose=$(VERBOSE)
 
 # Rule to build all files generated by this target.
@@ -206,8 +180,7 @@ tests/CMakeFiles/catch2Test.dir/build: tests/catch2Test
 tests/CMakeFiles/catch2Test.dir/requires: tests/CMakeFiles/catch2Test.dir/catch2Main.cpp.o.requires
 tests/CMakeFiles/catch2Test.dir/requires: tests/CMakeFiles/catch2Test.dir/testMyFraction.cpp.o.requires
 tests/CMakeFiles/catch2Test.dir/requires: tests/CMakeFiles/catch2Test.dir/testCxxExamples.cpp.o.requires
-tests/CMakeFiles/catch2Test.dir/requires: tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o.requires
-tests/CMakeFiles/catch2Test.dir/requires: tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o.requires
+tests/CMakeFiles/catch2Test.dir/requires: tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o.requires
 
 .PHONY : tests/CMakeFiles/catch2Test.dir/requires
 

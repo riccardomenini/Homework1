@@ -4,8 +4,7 @@ set(CMAKE_DEPENDS_LANGUAGES
   )
 # The set of files for implicit dependencies of each language:
 set(CMAKE_DEPENDS_CHECK_CXX
-  "/home/riccardo/Homework1/src/CxxExamples.cpp" "/home/riccardo/Homework1/build/tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o"
-  "/home/riccardo/Homework1/src/MyFraction.cpp" "/home/riccardo/Homework1/build/tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o"
+  "/home/riccardo/Homework1/src/motrice.cpp" "/home/riccardo/Homework1/build/tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o"
   "/home/riccardo/Homework1/tests/catch2Main.cpp" "/home/riccardo/Homework1/build/tests/CMakeFiles/catch2Test.dir/catch2Main.cpp.o"
   "/home/riccardo/Homework1/tests/testCxxExamples.cpp" "/home/riccardo/Homework1/build/tests/CMakeFiles/catch2Test.dir/testCxxExamples.cpp.o"
   "/home/riccardo/Homework1/tests/testMyFraction.cpp" "/home/riccardo/Homework1/build/tests/CMakeFiles/catch2Test.dir/testMyFraction.cpp.o"

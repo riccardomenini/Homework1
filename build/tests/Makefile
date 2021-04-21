@@ -125,59 +125,32 @@ catch2Test/fast:
 	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/build
 .PHONY : catch2Test/fast
 
-__/src/CxxExamples.o: __/src/CxxExamples.cpp.o
+__/src/motrice.o: __/src/motrice.cpp.o
 
-.PHONY : __/src/CxxExamples.o
-
-# target to build an object file
-__/src/CxxExamples.cpp.o:
-	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o
-.PHONY : __/src/CxxExamples.cpp.o
-
-__/src/CxxExamples.i: __/src/CxxExamples.cpp.i
-
-.PHONY : __/src/CxxExamples.i
-
-# target to preprocess a source file
-__/src/CxxExamples.cpp.i:
-	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.i
-.PHONY : __/src/CxxExamples.cpp.i
-
-__/src/CxxExamples.s: __/src/CxxExamples.cpp.s
-
-.PHONY : __/src/CxxExamples.s
-
-# target to generate assembly for a file
-__/src/CxxExamples.cpp.s:
-	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.s
-.PHONY : __/src/CxxExamples.cpp.s
-
-__/src/MyFraction.o: __/src/MyFraction.cpp.o
-
-.PHONY : __/src/MyFraction.o
+.PHONY : __/src/motrice.o
 
 # target to build an object file
-__/src/MyFraction.cpp.o:
-	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o
-.PHONY : __/src/MyFraction.cpp.o
+__/src/motrice.cpp.o:
+	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o
+.PHONY : __/src/motrice.cpp.o
 
-__/src/MyFraction.i: __/src/MyFraction.cpp.i
+__/src/motrice.i: __/src/motrice.cpp.i
 
-.PHONY : __/src/MyFraction.i
+.PHONY : __/src/motrice.i
 
 # target to preprocess a source file
-__/src/MyFraction.cpp.i:
-	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.i
-.PHONY : __/src/MyFraction.cpp.i
+__/src/motrice.cpp.i:
+	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.i
+.PHONY : __/src/motrice.cpp.i
 
-__/src/MyFraction.s: __/src/MyFraction.cpp.s
+__/src/motrice.s: __/src/motrice.cpp.s
 
-.PHONY : __/src/MyFraction.s
+.PHONY : __/src/motrice.s
 
 # target to generate assembly for a file
-__/src/MyFraction.cpp.s:
-	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.s
-.PHONY : __/src/MyFraction.cpp.s
+__/src/motrice.cpp.s:
+	cd /home/riccardo/Homework1/build && $(MAKE) -f tests/CMakeFiles/catch2Test.dir/build.make tests/CMakeFiles/catch2Test.dir/__/src/motrice.cpp.s
+.PHONY : __/src/motrice.cpp.s
 
 catch2Main.o: catch2Main.cpp.o
 
@@ -269,12 +242,9 @@ help:
 	@echo "... rebuild_cache"
 	@echo "... catch2Test"
 	@echo "... edit_cache"
-	@echo "... __/src/CxxExamples.o"
-	@echo "... __/src/CxxExamples.i"
-	@echo "... __/src/CxxExamples.s"
-	@echo "... __/src/MyFraction.o"
-	@echo "... __/src/MyFraction.i"
-	@echo "... __/src/MyFraction.s"
+	@echo "... __/src/motrice.o"
+	@echo "... __/src/motrice.i"
+	@echo "... __/src/motrice.s"
 	@echo "... catch2Main.o"
 	@echo "... catch2Main.i"
 	@echo "... catch2Main.s"

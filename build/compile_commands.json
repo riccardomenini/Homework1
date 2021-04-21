@@ -26,12 +26,7 @@
 },
 {
   "directory": "/home/riccardo/Homework1/build/tests",
-  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/riccardo/Homework1/tests/../include  -g   -std=gnu++1z -o CMakeFiles/catch2Test.dir/__/src/MyFraction.cpp.o -c /home/riccardo/Homework1/src/MyFraction.cpp",
-  "file": "/home/riccardo/Homework1/src/MyFraction.cpp"
-},
-{
-  "directory": "/home/riccardo/Homework1/build/tests",
-  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/riccardo/Homework1/tests/../include  -g   -std=gnu++1z -o CMakeFiles/catch2Test.dir/__/src/CxxExamples.cpp.o -c /home/riccardo/Homework1/src/CxxExamples.cpp",
-  "file": "/home/riccardo/Homework1/src/CxxExamples.cpp"
+  "command": "/usr/bin/x86_64-linux-gnu-g++-7   -I/home/riccardo/Homework1/tests/../include  -g   -std=gnu++1z -o CMakeFiles/catch2Test.dir/__/src/motrice.cpp.o -c /home/riccardo/Homework1/src/motrice.cpp",
+  "file": "/home/riccardo/Homework1/src/motrice.cpp"
 }
 ]
