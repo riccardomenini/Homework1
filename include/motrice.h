@@ -44,6 +44,8 @@ MeniniDevice* menini_set(MeniniDevice*);
 
 //std::string menini_to_svg (MeniniDevice*);
 
-int menini_init(MeniniDevice*);
+int menini_check(MeniniDevice*);
+
+MeniniDevice* menini_init();
 
 #endif 

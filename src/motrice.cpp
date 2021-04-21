@@ -10,7 +10,7 @@ using namespace std;
  * @param device struttura contenente i parametri dell'svg
  * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
  */
-int menini_init(MeniniDevice* device){
+int menini_check(MeniniDevice* device){
     int ret;
     ret = 0;
     if (device->cabina.w > device->pianale.w){
@@ -30,6 +30,19 @@ int menini_init(MeniniDevice* device){
         ret = 1;
     }
     return ret;
+}
+
+/**
+ *Inizializza.
+ *
+ * @return puntatore a device
+ */
+
+MeniniDevice* menini_init(){
+    MeniniDevice *device = new MeniniDevice;
+    device->w = 0;
+    device->h = 0;
+    return device;
 }
 
 /**
@@ -76,7 +89,7 @@ MeniniDevice* menini_set(MeniniDevice* device){
 
     device->w = 2 * marginess + device->cabina.w + device->pianale.w + device->ruotadx.r;
 
-    if (menini_init(device) == 0){
+    if (menini_check(device) == 0){
         return device;
     }else{
         delete(device);
