@@ -1,0 +1,22 @@
+#IncludeRegexLine: ^[ 	]*[#%][ 	]*(include|import)[ 	]*[<"]([^">]+)([">])
+
+#IncludeRegexScan: ^.*$
+
+#IncludeRegexComplain: ^$
+
+#IncludeRegexTransform: 
+
+../include/motrice.h
+
+/home/riccardo/Homework1/main.cpp
+iostream
+-
+motrice.h
+/home/riccardo/Homework1/motrice.h
+
+/home/riccardo/Homework1/src/motrice.cpp
+motrice.h
+/home/riccardo/Homework1/src/motrice.h
+iostream
+/home/riccardo/Homework1/src/iostream
+
