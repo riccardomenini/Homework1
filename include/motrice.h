@@ -2,27 +2,27 @@
 #define MOTRICE_H
 
 
-struct meninipianale {
+struct MeniniPianale {
     float x;
     float y;
     float w;
     float h;
 };
 
-struct meninicabina {
+struct MeniniCabina {
     float x;
     float y;
     float w;
     float h;
 };
 
-struct meniniruota {
+struct MeniniRuota {
     float x;
     float y;
     float r;
 };
 
-struct meninivetro {
+struct MeniniVetro {
     float x;
     float y;
     float w;
@@ -32,11 +32,11 @@ struct meninivetro {
 struct MeniniDevice{
     float w;
     float h;
-    meninipianale pianale;
-    meninicabina cabina;
-    meninivetro vetro;
-    meniniruota ruotasx;
-    meniniruota ruotadx;
+    MeniniPianale pianale;
+    MeniniCabina cabina;
+    MeniniVetro vetro;
+    MeniniRuota ruotasx;
+    MeniniRuota ruotadx;
 };
 
 
