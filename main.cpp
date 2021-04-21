@@ -4,16 +4,17 @@
 using namespace std;
 
 int main() {
-    MeniniDevice *device = new MeniniDevice;
     cout << "GENERATORE DI IMMAGINI SVG\n Menu:\n [l] - caricare svg da file\n [c] - creare un nuovo svg\n [s] - salvare svg su file\n [q] - quit\n\n Cosa si desidera fare? \n";
     char a;
+    MeniniDevice *device = menini_init();
     cin >> a;
     while (a != 'q'){
         switch (a)
         {
-        case 'l':       //caricamento   
+        case 'l':       //caricamento 
             break;
         case 'c':       //creazione
+            menini_set (device);
             break;
         case 's':       //salvataggio
             break;
