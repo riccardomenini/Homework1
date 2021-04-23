@@ -1,6 +1,6 @@
-
 #include "motrice.h"
 #include "iostream"
+#include <string>
 
 using namespace std;
 
@@ -265,4 +265,76 @@ MeniniDevice* menini_set(MeniniDevice* device){
     menini_reset(device);
     return device;
 }
-//std::string menini_to_svg (MeniniDevice* device){}
+
+/**
+ * Setta le dimensioni dell'immagine
+ *
+ * @param device contiene i parametri dell'immagine
+ * @return stringa da stampare
+ */
+string menini_to_svg (MeniniDevice* device){
+    string a;
+    a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
+    a += "<svg xmlns='http://www.w3.org/2000/svg' width='";
+    a += to_string(device->w);
+    a += "mm' height='";
+    a += to_string(device->h);
+    a += "mm' viewBox='0 0 ";
+    a += to_string(210);
+    a += " ";
+    a += to_string(297);
+    a += "'>\n<g>\n";
+
+    a += "<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='";
+    a += to_string(device->cabina.w);
+    a += "' height='";
+    a += to_string(device->cabina.h);
+    a += "' x='";
+    a += to_string(device->cabina.x);
+    a += "' y='";
+    a += to_string(device->cabina.y);
+    a += "' />\n";
+    
+    a += "<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='";
+    a += to_string(device->vetro.w);
+    a += "' height='";
+    a += to_string(device->vetro.h);
+    a += "' x='";
+    a += to_string(device->vetro.x);
+    a += "' y='";
+    a += to_string(device->vetro.y);
+    a += "' />\n";
+
+    a += "<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='";
+    a += to_string(device->pianale.w);
+    a += "' height='";
+    a += to_string(device->pianale.h);
+    a += "' x='";
+    a += to_string(device->pianale.x);
+    a += "' y='";
+    a += to_string(device->pianale.y);
+    a += "' />\n";
+
+    a += "<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='";
+    a += to_string(device->ruotasx.x);
+    a += "' cy='";
+    a += to_string(device->ruotasx.y);
+    a += "' rx='";
+    a += to_string(device->ruotasx.r);
+    a += "' ry='";
+    a += to_string(device->ruotasx.r);
+    a += "' />\n";
+
+    a += "<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='";
+    a += to_string(device->ruotadx.x);
+    a += "' cy='";
+    a += to_string(device->ruotadx.y);
+    a += "' rx='";
+    a += to_string(device->ruotadx.r);
+    a += "' ry='";
+    a += to_string(device->ruotadx.r);
+    a += "' />\n";
+    
+    a += "</g>\n</svg>\n";
+    return a;
+}

@@ -2,6 +2,8 @@
 #define MOTRICE_H
 #include <string>
 
+using namespace std;
+
 
 struct MeniniPianale {
     float x;
@@ -69,6 +71,6 @@ int menini_check_ruotadx(MeniniDevice*, int);
 
 int menini_set_ruotadx(MeniniDevice*, float);
 
-//std::string menini_to_svg (MeniniDevice*);
+string menini_to_svg (MeniniDevice*);
 
 #endif 

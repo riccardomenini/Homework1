@@ -12,6 +12,7 @@ int main() {
         switch (a)
         {
         case 'l':       //caricamento 
+            cout << menini_to_svg (device);
             break;
         case 'c':       //creazione
             menini_set (device);
