@@ -73,4 +73,7 @@ int menini_set_ruotadx(MeniniDevice*, float);
 
 string menini_to_svg (MeniniDevice*);
 
+void menini_write_file(string);
+
+
 #endif 

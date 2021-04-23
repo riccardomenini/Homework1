@@ -1,6 +1,9 @@
 #include "motrice.h"
-#include "iostream"
+#include <iostream>
 #include <string>
+#include <fstream>
+#include <streambuf>
+#include <sstream>
 
 using namespace std;
 
@@ -338,3 +341,14 @@ string menini_to_svg (MeniniDevice* device){
     a += "</g>\n</svg>\n";
     return a;
 }
+
+/**
+ * Scrive su file la stringa ricevuta in ingresso
+ *
+ * @param stringa contiene la tringa da scrivere
+ */
+void menini_write_file(string stringa){
+    ofstream MyFile("../motrice.svg");
+    MyFile << stringa;
+    MyFile.close();
+};
