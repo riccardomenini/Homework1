@@ -1,98 +1,10 @@
-<?xml version="1.0" encoding="UTF-8" standalone="no"?>
-<svg
-   xmlns:dc="http://purl.org/dc/elements/1.1/"
-   xmlns:cc="http://creativecommons.org/ns#"
-   xmlns:rdf="http://www.w3.org/1999/02/22-rdf-syntax-ns#"
-   xmlns:svg="http://www.w3.org/2000/svg"
-   xmlns="http://www.w3.org/2000/svg"
-   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
-   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
-   width="210mm"
-   height="297mm"
-   viewBox="0 0 210 297"
-   version="1.1"
-   id="svg8"
-   inkscape:version="1.0.2 (e86c8708, 2021-01-15)"
-   sodipodi:docname="motrice.svg">
-  <defs
-     id="defs2" />
-  <sodipodi:namedview
-     id="base"
-     pagecolor="#ffffff"
-     bordercolor="#666666"
-     borderopacity="1.0"
-     inkscape:pageopacity="0.0"
-     inkscape:pageshadow="2"
-     inkscape:zoom="0.79245004"
-     inkscape:cx="387.9952"
-     inkscape:cy="609.51374"
-     inkscape:document-units="mm"
-     inkscape:current-layer="layer1"
-     inkscape:document-rotation="0"
-     showgrid="false"
-     inkscape:snap-text-baseline="false"
-     inkscape:window-width="1440"
-     inkscape:window-height="900"
-     inkscape:window-x="1920"
-     inkscape:window-y="0"
-     inkscape:window-maximized="0" />
-  <metadata
-     id="metadata5">
-    <rdf:RDF>
-      <cc:Work
-         rdf:about="">
-        <dc:format>image/svg+xml</dc:format>
-        <dc:type
-           rdf:resource="http://purl.org/dc/dcmitype/StillImage" />
-        <dc:title></dc:title>
-      </cc:Work>
-    </rdf:RDF>
-  </metadata>
-  <g
-     inkscape:label="Livello 1"
-     inkscape:groupmode="layer"
-     id="layer1">
-    <rect
-       style="fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061"
-       id="rect10"
-       width="163.88417"
-       height="15.402357"
-       x="26.45833"
-       y="147.12741" />
-    <rect
-       style="fill:#ff7f2a;stroke-width:0.310366"
-       id="rect12"
-       width="40.985458"
-       height="44.626209"
-       x="26.458328"
-       y="102.5012" />
-    <ellipse
-       style="fill:#4d4d4d;stroke-width:0.23472"
-       id="path14"
-       cx="55.591045"
-       cy="163.68909"
-       rx="13.856026"
-       ry="13.689086" />
-    <ellipse
-       style="fill:#4d4d4d;stroke-width:0.23472"
-       id="path14-7"
-       cx="159.26083"
-       cy="163.68909"
-       rx="13.856026"
-       ry="13.689086" />
-    <rect
-       style="fill:#00ffff;stroke-width:0.264583"
-       id="rect95"
-       width="23.705488"
-       height="15.358487"
-       x="26.710413"
-       y="112.85149" />
-    <rect
-       style="fill:#00ffff;stroke-width:0.264583"
-       id="rect97"
-       width="1.3355206"
-       height="2.3371611"
-       x="36.726814"
-       y="115.18864" />
-  </g>
+<?xml version='1.0' encoding='UTF-8' standalone='no'?>
+<svg xmlns='http://www.w3.org/2000/svg' width='0.000000mm' height='0.000000mm' viewBox='0 0 210 297'>
+<g>
+<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='0.000000' y='0.000000' />
+<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='13.333333' x='0.000000' y='0.000000' />
+<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='0.000000' y='40.000000' />
+<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='50.000000' rx='9.000000' ry='9.000000' />
+<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='50.000000' rx='9.000000' ry='9.000000' />
+</g>
 </svg>

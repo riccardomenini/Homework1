@@ -13,7 +13,10 @@ int main() {
     while (a != 'q'){
         switch (a)
         {
-        case 'l':       //caricamento 
+        case 'l':       //caricamento
+            cout << "Inserire file da cui si vuole leggere";
+            cin >> stringa;
+            menini_read_file(stringa);
             break;
         case 'c':       //creazione
             menini_set (device);
