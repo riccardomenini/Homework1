@@ -267,7 +267,7 @@ MeniniDevice* menini_set(MeniniDevice* device){
 }
 
 /**
- * Setta le dimensioni dell'immagine
+ * Crea e ritorna la stringa corrispondente al device creato
  *
  * @param device contiene i parametri dell'immagine
  * @return stringa da stampare
