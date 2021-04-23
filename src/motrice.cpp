@@ -373,7 +373,7 @@ void menini_read_file(string filename){
 /**
  * Crea un device da una stringa svg
  *
- * @param stringa contiene la tringa da scrivere
+ * @param stringa contiene la stringa da scrivere
  * @return il device
  */
 MeniniDevice* menini_parse(string svg){
