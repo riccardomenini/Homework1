@@ -4,6 +4,7 @@
 #include <fstream>
 #include <streambuf>
 #include <sstream>
+#include <cmath>
 
 using namespace std;
 
@@ -28,6 +29,7 @@ MeniniDevice* menini_init(){
  */
 
 MeniniDevice* menini_reset(MeniniDevice* device){
+
     device->ruotasx.r = device->ruotadx.r;
 
     device->cabina.x = device->margineds;
@@ -46,6 +48,9 @@ MeniniDevice* menini_reset(MeniniDevice* device){
     
     device->ruotasx.y = device->pianale.y + device->pianale.h; 
     device->ruotadx.y = device->pianale.y + device->pianale.h; 
+
+    device->w = 2 * device->marginess + device->pianale.w ;
+    device->h = 2 * device->marginess + device->cabina.w + device->pianale.w + device->ruotadx.r;
 
     return device;
     
@@ -283,9 +288,9 @@ string menini_to_svg (MeniniDevice* device){
     a += "mm' height='";
     a += to_string(device->h);
     a += "mm' viewBox='0 0 ";
-    a += to_string(210);
+    a += to_string(device->w);
     a += " ";
-    a += to_string(297);
+    a += to_string(device->h);
     a += "'>\n<g>\n";
 
     a += "<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='";
@@ -359,22 +364,97 @@ void menini_write_file(string stringa){
   * @param filename
   * @return stringa stringa letta
   */
- void menini_read_file(string filename){
+ string menini_read_file(string filename){
      ifstream t(filename);
      stringstream buffer;
      buffer << t.rdbuf();
      string s = buffer.str();
-
-     cout << "I read this" << endl;
-     cout << s << endl;
+     return s;
  };
+
+/**
+  * cerca una numero nell'svg
+  *
+  * @param stringa contiene la stringa in cui cercare
+  * @param cercata contiene la stringa da cercare
+  * @param partenza la posizione da cui partire nella ricerca
+  * @param fine contiene la stringa che segna la fine del numero
+  * @return il device
+  */
+float menini_cerca(string stringa, string cercata, int & partenza, string fine){
+    string numero;
+    //cout << "partenza in cerca= " << partenza;
+    size_t found = stringa.find(cercata, partenza);
+    if (found != string::npos)
+        found += cercata.length();
+        size_t found1 = stringa.find(fine, found+1);
+        for (found; found < found1; found++){
+        //cout << "ciclo" << stringa[found] << "\n";
+        numero += stringa[found];
+        }
+    //cout << "numero trovato: " << numero << "\n";
+    partenza = found;
+    return stof(numero);
+}
 
  /**
   * Crea un device da una stringa svg
   *
-  * @param stringa contiene la tringa da scrivere
+  * @param stringa contiene la stringa da scrivere
   * @return il device
   */
- MeniniDevice* menini_parse(string svg){
+ MeniniDevice* menini_parse(string stringa){
+    MeniniDevice *device = menini_init();
 
+    /*string numero1;
+    string str1 = "width";
+    size_t found = stringa.find(str1);
+    if (found != string::npos)
+        found += 7;
+        size_t found1 = stringa.find("m", found+1);
+        for (found; found < found1; found++){
+        numero1 += stringa[found];
+    }*/
+
+    float numero1;
+    float numero2;
+    float numero3;
+    float numero4;
+    int partenza = 0;
+
+    //width e height svg
+    device->w = menini_cerca(stringa, "width='", partenza, "m");
+    device->h = menini_cerca(stringa, "height='", partenza, "m");
+    //cout << device->w << " " << device->h;
+
+    //cabina
+    device->cabina.w = menini_cerca(stringa, "width='", partenza, "'");
+    device->cabina.h = menini_cerca(stringa, "height='", partenza, "'");
+    device->cabina.x = menini_cerca(stringa, "x='", partenza, "'");
+    device->cabina.y = menini_cerca(stringa, "y='", partenza, "'");
+    
+    //vetro
+    device->vetro.w = menini_cerca(stringa, "width='", partenza, "'");
+    device->vetro.h = menini_cerca(stringa, "height='", partenza, "'");
+    device->vetro.x = menini_cerca(stringa, "x='", partenza, "'");
+    device->vetro.y = menini_cerca(stringa, "y='", partenza, "'");
+    
+    //pianale
+    device->pianale.w = menini_cerca(stringa, "width='", partenza, "'");
+    device->pianale.h = menini_cerca(stringa, "height='", partenza, "'");
+    device->pianale.x = menini_cerca(stringa, "x='", partenza, "'");
+    device->pianale.y = menini_cerca(stringa, "y='", partenza, "'");
+    
+    //ruotasx
+    device->ruotasx.x = menini_cerca(stringa, "cx='", partenza, "'");
+    device->ruotasx.y = menini_cerca(stringa, "cy='", partenza, "'");
+    device->ruotasx.r = menini_cerca(stringa, "rx='", partenza, "'");
+    
+    //ruotadx
+
+    device->ruotadx.x = menini_cerca(stringa, "cx='", partenza, "'");
+    device->ruotadx.y = menini_cerca(stringa, "cy='", partenza, "'");
+    device->ruotadx.r = menini_cerca(stringa, "rx='", partenza, "'");
+    cout << device->ruotadx.x << " " << device->ruotadx.y << " " << device->ruotadx.r << " \n";
+    return device;
  }

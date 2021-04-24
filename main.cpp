@@ -8,6 +8,7 @@ int main() {
     cout << "GENERATORE DI IMMAGINI SVG\n Menu:\n [l] - caricare svg da file\n [c] - creare un nuovo svg\n [s] - salvare svg su file\n [q] - quit\n\n Cosa si desidera fare? \n";
     char a;
     string stringa;
+    string testoletto;
     MeniniDevice *device = menini_init();
     cin >> a;
     while (a != 'q'){
@@ -16,7 +17,8 @@ int main() {
         case 'l':       //caricamento
              cout << "Inserire file da cui si vuole leggere";
              cin >> stringa;
-             menini_read_file(stringa);
+             testoletto = menini_read_file(stringa);
+             menini_parse(testoletto);
              break;
         case 'c':       //creazione
             menini_set (device);

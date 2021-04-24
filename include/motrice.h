@@ -4,7 +4,6 @@
 
 using namespace std;
 
-
 struct MeniniPianale {
     float x;
     float y;
@@ -38,10 +37,10 @@ struct MeniniDevice{
     MeniniVetro vetro;
     MeniniRuota ruotasx;
     MeniniRuota ruotadx;
-    float w = 2 * marginess + pianale.w ;
-    float h = 2 * marginess + cabina.w + pianale.w + ruotadx.r;
-    float margineds = w / 10;
-    float marginess = h / 10;
+    float w;
+    float h;
+    float margineds = 10;
+    float marginess = 10;
 };
 
 
@@ -75,7 +74,9 @@ string menini_to_svg (MeniniDevice*);
 
 void menini_write_file(string);
 
-void menini_read_file(string);
+string menini_read_file(string);
+
+float menini_cerca(string, string, int *, string);
 
 MeniniDevice* menini_parse(string);
 
