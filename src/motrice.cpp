@@ -373,7 +373,7 @@ void menini_write_file(string stringa){
  };
 
 /**
-  * cerca una numero nell'svg
+  * Cerca un parametro nell'svg
   *
   * @param stringa contiene la stringa in cui cercare
   * @param cercata contiene la stringa da cercare
@@ -405,16 +405,6 @@ float menini_cerca(string stringa, string cercata, int & partenza, string fine){
   */
  MeniniDevice* menini_parse(string stringa){
     MeniniDevice *device = menini_init();
-
-    /*string numero1;
-    string str1 = "width";
-    size_t found = stringa.find(str1);
-    if (found != string::npos)
-        found += 7;
-        size_t found1 = stringa.find("m", found+1);
-        for (found; found < found1; found++){
-        numero1 += stringa[found];
-    }*/
 
     float numero1;
     float numero2;
@@ -455,6 +445,6 @@ float menini_cerca(string stringa, string cercata, int & partenza, string fine){
     device->ruotadx.x = menini_cerca(stringa, "cx='", partenza, "'");
     device->ruotadx.y = menini_cerca(stringa, "cy='", partenza, "'");
     device->ruotadx.r = menini_cerca(stringa, "rx='", partenza, "'");
-    cout << device->ruotadx.x << " " << device->ruotadx.y << " " << device->ruotadx.r << " \n";
+    //cout << device->ruotadx.x << " " << device->ruotadx.y << " " << device->ruotadx.r << " \n";
     return device;
  }
