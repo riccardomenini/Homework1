@@ -39,9 +39,9 @@ MeniniDevice* menini_reset(MeniniDevice* device){
     
 
     device->vetro.x = device->margineds;
-    device->vetro.y = device->marginess;
+    device->vetro.y = device->cabina.w /5;
     device->vetro.w = device->cabina.w /2;
-    device->vetro.h = device->cabina.h /3;
+    device->vetro.h = device->cabina.h /2;
 
     device->pianale.x = device->margineds;
     device->pianale.y = device->marginess + device->cabina.h;
@@ -352,8 +352,8 @@ string menini_to_svg (MeniniDevice* device){
  *
  * @param stringa contiene la tringa da scrivere
  */
-void menini_write_file(string stringa){
-    ofstream MyFile("../motrice.svg");
+void menini_write_file(string stringa, string nomefile){
+    ofstream MyFile(nomefile);
     MyFile << stringa;
     MyFile.close();
 };

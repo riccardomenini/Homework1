@@ -15,17 +15,19 @@ int main() {
         switch (a)
         {
         case 'l':       //caricamento
-             cout << "Inserire file da cui si vuole leggere";
+             cout << "Inserire file da cui si vuole leggere ";
              cin >> stringa;
              testoletto = menini_read_file(stringa);
-             menini_parse(testoletto);
+             device = menini_parse(testoletto);
              break;
         case 'c':       //creazione
             menini_set (device);
             break;
         case 's':       //salvataggio
+            cout << "Inserire nome file su cui salvare l'svg ";
+            cin >> testoletto;
             stringa = menini_to_svg (device);
-            menini_write_file(stringa);
+            menini_write_file(stringa, testoletto);
             break;
         default:
             break;
