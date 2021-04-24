@@ -352,31 +352,3 @@ void menini_write_file(string stringa){
     MyFile << stringa;
     MyFile.close();
 };
-
-
-/**
- * Legge da file
- *
- * @param filename nome del file da leggere
- * @return stringa stringa letta
- */
-void menini_read_file(string filename){
-    ifstream t(filename);
-    stringstream buffer;
-    buffer << t.rdbuf();
-    string s = buffer.str();
-    
-    cout << "I read this" << endl;
-    cout << s << endl;
-};
-
-/**
- * Crea un device da una stringa svg
- *
- * @param stringa contiene la stringa da scrivere
- * @return il device
- */
-MeniniDevice* menini_parse(string svg){
-
-}
-

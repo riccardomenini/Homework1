@@ -75,9 +75,5 @@ string menini_to_svg (MeniniDevice*);
 
 void menini_write_file(string);
 
-void menini_read_file(string);
-
-MeniniDevice* menini_parse(string);
-
 
 #endif 
