@@ -14,16 +14,16 @@ int main() {
     while (a != 'q'){
         switch (a)
         {
-        case 'l':       //caricamento
+        case 'l': //caricamento
              cout << "Inserire file da cui si vuole leggere ";
              cin >> stringa;
              testoletto = menini_read_file(stringa);
              device = menini_parse(testoletto);
              break;
-        case 'c':       //creazione
+        case 'c'://creazione
             menini_set (device);
             break;
-        case 's':       //salvataggio
+        case 's'://salvataggio
             cout << "Inserire nome file su cui salvare l'svg ";
             cin >> testoletto;
             stringa = menini_to_svg (device);
