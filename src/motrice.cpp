@@ -63,7 +63,7 @@ MeniniDevice* menini_reset(MeniniDevice* device){
  * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
  */
 
-int menini_check_pianale_w(MeniniDevice* device, int new_w){
+int menini_check_pianale_w(MeniniDevice* device, float new_w){
     if (device->ruotasx.x > new_w / 2 || device->ruotadx.x < new_w / 2){
         return 1;
     }else{
@@ -96,7 +96,7 @@ int menini_set_pianale_w(MeniniDevice* device, float new_w){
  * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
  */
 
-int menini_check_pianale_h(MeniniDevice* device, int new_h){
+int menini_check_pianale_h(MeniniDevice* device, float new_h){
     if (device->ruotadx.r > new_h){
         return 1;
     }else{
@@ -113,7 +113,7 @@ int menini_check_pianale_h(MeniniDevice* device, int new_h){
  */
 
 int menini_set_pianale_h(MeniniDevice* device, float new_h){
-    if (menini_check_pianale_w(device, new_h)==1){
+    if (menini_check_pianale_h(device, new_h)==1){
         return 1;
     }
 
@@ -129,7 +129,7 @@ int menini_set_pianale_h(MeniniDevice* device, float new_h){
  * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
  */
 
-int menini_check_raggi(MeniniDevice* device, int new_r){
+int menini_check_raggi(MeniniDevice* device, float new_r){
     if (new_r > device->pianale.h){
         return 1;
     }else{
@@ -162,8 +162,8 @@ int menini_set_raggi(MeniniDevice* device, float new_r){
  * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
  */
 
-int menini_check_ruotasx(MeniniDevice* device, int new_x){
-    if (new_x > device->pianale.w / 3){
+int menini_check_ruotasx(MeniniDevice* device, float new_x){
+    if (new_x > device->pianale.w / 2){
         return 1;
     }else{
         return 0;
@@ -195,8 +195,8 @@ int menini_set_ruotasx(MeniniDevice* device, float new_x){
  * @return 0 se i parametri rispettano i vicoli, 1 altrimenti
  */
 
-int menini_check_ruotadx(MeniniDevice* device, int new_x){
-    if (new_x < 2 * device->pianale.w / 3){
+int menini_check_ruotadx(MeniniDevice* device, float new_x){
+    if (new_x < device->pianale.w / 2){
         return 1;
     }else{
         return 0;

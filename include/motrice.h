@@ -50,23 +50,23 @@ MeniniDevice* menini_reset(MeniniDevice*);
 
 MeniniDevice* menini_set(MeniniDevice*);
 
-int menini_check_pianale_w(MeniniDevice*);
+int menini_check_pianale_w(MeniniDevice*, float);
 
 int menini_set_pianale_w(MeniniDevice*, float);
 
-int menini_check_pianale_h(MeniniDevice*, int);
+int menini_check_pianale_h(MeniniDevice*, float);
 
 int menini_set_pianale_h(MeniniDevice*, float);
 
-int menini_check_raggi(MeniniDevice*, int new_r);
+int menini_check_raggi(MeniniDevice*, float);
 
 int menini_set_raggi(MeniniDevice*, float);
 
-int menini_check_ruotasx(MeniniDevice*, int);
+int menini_check_ruotasx(MeniniDevice*, float);
 
 int menini_set_ruotasx(MeniniDevice*, float);
 
-int menini_check_ruotadx(MeniniDevice*, int);
+int menini_check_ruotadx(MeniniDevice*, float);
 
 int menini_set_ruotadx(MeniniDevice*, float);
 
