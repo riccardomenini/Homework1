@@ -405,15 +405,203 @@ TEST_CASE("menini_read_file dovrebbe ritornare la stringa letta", "[motrice]") {
     REQUIRE( menini_read_file("motrice.svg") == a);   
 }
 
-TEST_CASE("menini_cerca dovrebbe ritornare la posizione della stringa cercata", "[motrice]") {
+/*TEST_CASE("menini_cerca dovrebbe ritornare la posizione della stringa cercata", "[motrice]") {
 
     int *partenza = 0;
 
-    REQUIRE( menini_cerca("ciao", "i", 0, "o") == (float)1);   
+    REQUIRE( menini_cerca("ciao", "i", partenza, "o") == (float)1);   
+}*/
+
+TEST_CASE("menini_parse dovrebbe ritornare il device creato dalla stringa letta", "[motrice]") {
+
+    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='200.000000mm' height='269.000000mm' viewBox='0 0 200.000000 269.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='10.000000' y='10.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='10.000000' y='12.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='10.000000' y='50.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
+    
+    MeniniDevice *device = menini_parse(a);
+
+    REQUIRE( device->w == (float)200);
+    REQUIRE( device->h == (float)269);   
+}
+
+TEST_CASE("menini_parse dovrebbe ritornare la cabina creata dalla stringa letta", "[motrice]") {
+
+    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='200.000000mm' height='269.000000mm' viewBox='0 0 200.000000 269.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='10.000000' y='10.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='10.000000' y='12.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='10.000000' y='50.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
+    
+    MeniniDevice *device = menini_parse(a);
+
+    REQUIRE( device->cabina.w == (float)60);
+    REQUIRE( device->cabina.h == (float)40); 
+    REQUIRE( device->cabina.x == (float)10);
+    REQUIRE( device->cabina.y == (float)10);  
+}
+
+TEST_CASE("menini_parse dovrebbe ritornare il vetro creato dalla stringa letta", "[motrice]") {
+
+    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='200.000000mm' height='269.000000mm' viewBox='0 0 200.000000 269.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='10.000000' y='10.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='10.000000' y='12.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='10.000000' y='50.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
+    
+    MeniniDevice *device = menini_parse(a);
+
+    REQUIRE( device->vetro.w == (float)30);
+    REQUIRE( device->vetro.h == (float)20); 
+    REQUIRE( device->vetro.x == (float)10);
+    REQUIRE( device->vetro.y == (float)12);  
+}
+
+TEST_CASE("menini_parse dovrebbe ritornare il pianale creato dalla stringa letta", "[motrice]") {
+
+    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='200.000000mm' height='269.000000mm' viewBox='0 0 200.000000 269.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='10.000000' y='10.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='10.000000' y='12.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='10.000000' y='50.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
+    
+    MeniniDevice *device = menini_parse(a);
+
+    REQUIRE( device->pianale.w == (float)180);
+    REQUIRE( device->pianale.h == (float)10); 
+    REQUIRE( device->pianale.x == (float)10);
+    REQUIRE( device->pianale.y == (float)50);  
+}
+
+TEST_CASE("menini_parse dovrebbe ritornare la ruota sx dalla stringa letta", "[motrice]") {
+
+    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='200.000000mm' height='269.000000mm' viewBox='0 0 200.000000 269.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='10.000000' y='10.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='10.000000' y='12.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='10.000000' y='50.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
+    
+    MeniniDevice *device = menini_parse(a);
+ 
+    REQUIRE( device->ruotasx.x == (float)40);
+    REQUIRE( device->ruotasx.y == (float)60);
+    REQUIRE( device->ruotasx.r == (float)9);  
+}
+
+TEST_CASE("menini_parse dovrebbe ritornare la ruota dx dalla stringa letta", "[motrice]") {
+
+    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='200.000000mm' height='269.000000mm' viewBox='0 0 200.000000 269.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='10.000000' y='10.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='10.000000' y='12.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='10.000000' y='50.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
+    
+    MeniniDevice *device = menini_parse(a);
+ 
+    REQUIRE( device->ruotadx.x == (float)140);
+    REQUIRE( device->ruotadx.y == (float)60);
+    REQUIRE( device->ruotadx.r == (float)9);  
+}
+
+TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni del device non richieste in input", "[motrice]") {
+
+    MeniniDevice *device = menini_init();
+
+    device->pianale.w = (float)180;
+    device->pianale.h = (float)10;
+
+    device->ruotasx.x = (float)40;
+    device->ruotasx.r = (float)9;
+
+    device->ruotadx.x = (float)140;
+    device->ruotadx.r = (float)9; 
+
+    menini_reset(device);
+
+    REQUIRE( device->w == (float)200);
+    REQUIRE( device->h == (float)269);   
 }
 
 
+TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della cabina non richieste in input", "[motrice]") {
 
+    MeniniDevice *device = menini_init();
+
+    device->pianale.w = (float)180;
+    device->pianale.h = (float)10;
+
+    device->ruotasx.x = (float)40;
+    device->ruotasx.r = (float)9;
+
+    device->ruotadx.x = (float)140;
+    device->ruotadx.r = (float)9; 
+
+    menini_reset(device); 
+
+    REQUIRE( device->cabina.w == (float)60);
+    REQUIRE( device->cabina.h == (float)40); 
+    REQUIRE( device->cabina.x == (float)10);
+    REQUIRE( device->cabina.y == (float)10); 
+}
+
+TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni del vetro non richieste in input", "[motrice]") {
+
+    MeniniDevice *device = menini_init();
+
+    device->pianale.w = (float)180;
+    device->pianale.h = (float)10;
+
+    device->ruotasx.x = (float)40;
+    device->ruotasx.r = (float)9;
+
+    device->ruotadx.x = (float)140;
+    device->ruotadx.r = (float)9; 
+
+    menini_reset(device); 
+
+    REQUIRE( device->vetro.w == (float)30);
+    REQUIRE( device->vetro.h == (float)20); 
+    REQUIRE( device->vetro.x == (float)10);
+    REQUIRE( device->vetro.y == (float)12);  
+}
+
+TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni del pianale non richieste in input", "[motrice]") {
+
+    MeniniDevice *device = menini_init();
+
+    device->pianale.w = (float)180;
+    device->pianale.h = (float)10;
+
+    device->ruotasx.x = (float)40;
+    device->ruotasx.r = (float)9;
+
+    device->ruotadx.x = (float)140;
+    device->ruotadx.r = (float)9; 
+
+    menini_reset(device); 
+
+    REQUIRE( device->pianale.w == (float)180);
+    REQUIRE( device->pianale.h == (float)10); 
+    REQUIRE( device->pianale.x == (float)10);
+    REQUIRE( device->pianale.y == (float)50);  
+}
+
+TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruotasx non richieste in input", "[motrice]") {
+
+    MeniniDevice *device = menini_init();
+
+    device->pianale.w = (float)180;
+    device->pianale.h = (float)10;
+
+    device->ruotasx.x = (float)40;
+    device->ruotasx.r = (float)9;
+
+    device->ruotadx.x = (float)140;
+    device->ruotadx.r = (float)9; 
+
+    menini_reset(device); 
+ 
+    REQUIRE( device->ruotasx.x == (float)40);
+    REQUIRE( device->ruotasx.y == (float)60);
+    REQUIRE( device->ruotasx.r == (float)9);  
+}
+
+TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruota dx non richieste in input", "[motrice]") {
+
+    MeniniDevice *device = menini_init();
+
+    device->pianale.w = (float)180;
+    device->pianale.h = (float)10;
+
+    device->ruotasx.x = (float)40;
+    device->ruotasx.r = (float)9;
+
+    device->ruotadx.x = (float)140;
+    device->ruotadx.r = (float)9; 
+
+    menini_reset(device); 
+ 
+    REQUIRE( device->ruotadx.x == (float)140);
+    REQUIRE( device->ruotadx.y == (float)60);
+    REQUIRE( device->ruotadx.r == (float)9);  
+}
 
 
 
@@ -427,7 +615,6 @@ TEST_CASE("menini_cerca dovrebbe ritornare la posizione della stringa cercata", 
 //testare menini_reset
 //testare menini_set
 //testare menini_write_file
-//testare menini_parse
 //finire menini_cerca
 //menini_to_svg ha solo un test
 //menini_read_file ha solo un test

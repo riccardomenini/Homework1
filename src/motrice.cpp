@@ -406,10 +406,6 @@ float menini_cerca(string stringa, string cercata, int & partenza, string fine){
  MeniniDevice* menini_parse(string stringa){
     MeniniDevice *device = menini_init();
 
-    float numero1;
-    float numero2;
-    float numero3;
-    float numero4;
     int partenza = 0;
 
     //width e height svg
