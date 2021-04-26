@@ -49,7 +49,7 @@ MeniniDevice* menini_reset(MeniniDevice* device){
     device->ruotasx.y = device->pianale.y + device->pianale.h; 
     device->ruotadx.y = device->pianale.y + device->pianale.h; 
 
-    device->w = 2 * device->marginess + device->pianale.w ;
+    device->w = 2 * device->pianale.w;//2 * device->margineds + device->pianale.w ;
     device->h = 2 * device->marginess + device->cabina.w + device->pianale.w + device->ruotadx.r;
 
     return device;
@@ -227,7 +227,7 @@ int menini_set_ruotadx(MeniniDevice* device, float new_x){
  * @param device contiene i parametri dell'immagine
  * @return stringa da stampare
  */
-string menini_to_svg (MeniniDevice* device){
+string menini_to_svg (MeniniDevice* device, bool with_measures){
     string a;
     a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
     a += "<svg xmlns='http://www.w3.org/2000/svg' width='";
@@ -289,6 +289,162 @@ string menini_to_svg (MeniniDevice* device){
     a += "' ry='";
     a += to_string(device->ruotadx.r);
     a += "' />\n";
+
+    if (with_measures){
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
+        a += to_string(device->pianale.w / 10);
+        a += "' height='";
+        a += to_string((float)1);
+        a += "' x='";
+        a += to_string(device->pianale.x + device->pianale.w);
+        a += "' y='";
+        a += to_string(device->pianale.y);
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='";
+        a += to_string(device->pianale.w / 10);
+        a += "' height='";
+        a += to_string((float)1);
+        a += "' x='";
+        a += to_string(device->pianale.x + device->pianale.w);
+        a += "' y='";
+        a += to_string(device->pianale.y + device->pianale.h - 1);
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='";
+        a += to_string((float)1);
+        a += "' height='";
+        a += to_string(device->pianale.h);
+        a += "' x='";
+        a += to_string(device->pianale.x + device->pianale.w + device->pianale.w / 12);
+        a += "' y='";
+        a += to_string(device->pianale.y );
+        a += "' />\n";
+
+        a += "<text xmlns='http://www.w3.org/2000/svg' x='";
+        a += to_string(device->pianale.x + device->pianale.w + device->pianale.w / 10);
+        a += "' y='";
+        a += to_string(device->pianale.y + device->pianale.h / 2);
+        a += "' fill='black' dominant-baseline='middle' text-anchor='start' font-size='8px' >";
+        a += to_string(device->pianale.h);
+        a += "</text>";
+
+        //raggioruotasx
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
+        a += to_string((float)1);
+        a += "' height='";
+        a += to_string(device->ruotasx.r + device->ruotasx.r / 2);
+        a += "' x='";
+        a += to_string(device->ruotasx.x - (device->ruotasx.r + 1));
+        a += "' y='";
+        a += to_string(device->ruotasx.y);
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='";
+        a += to_string((float)1);
+        a += "' height='";
+        a += to_string(device->ruotasx.r + device->ruotasx.r / 2);
+        a += "' x='";
+        a += to_string(device->ruotasx.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y);
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='";
+        a += to_string(device->ruotasx.r);
+        a += "' height='";
+        a += to_string((float)1);
+        a += "' x='";
+        a += to_string(device->ruotasx.x - (device->ruotasx.r));
+        a += "' y='";
+        a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3);
+        a += "' />\n";
+
+        a += "<text xmlns='http://www.w3.org/2000/svg' x='";
+        a += to_string(device->ruotasx.x - device->ruotasx.r / 2);
+        a += "' y='";
+        a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 10);
+        a += "' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >";
+        a += to_string(device->ruotasx.r);
+        a += "</text>";
+
+        //ruotasx
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
+        a += to_string((float)1);
+        a += "' height='";
+        a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 20);
+        a += "' x='";
+        a += to_string(device->pianale.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y );
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='";
+        a += to_string((float)1);
+        a += "' height='";
+        a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 20);
+        a += "' x='";
+        a += to_string(device->ruotasx.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y );
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='";
+        a += to_string(device->ruotasx.x - device->pianale.x);
+        a += "' height='";
+        a += to_string((float)1);
+        a += "' x='";
+        a += to_string(device->pianale.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 17);
+        a += "' />\n";
+
+        a += "<text xmlns='http://www.w3.org/2000/svg' x='";
+        a += to_string((device->ruotasx.x - device->pianale.x )/ 2 + device->pianale.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 10);
+        a += "' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >";
+        a += to_string(device->ruotasx.x);
+        a += "</text>";
+
+        //ruotadx
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
+        a += to_string((float)1);
+        a += "' height='";
+        a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 20);
+        a += "' x='";
+        a += to_string(device->pianale.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y );
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='";
+        a += to_string((float)1);
+        a += "' height='";
+        a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 20);
+        a += "' x='";
+        a += to_string(device->ruotadx.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y);
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='";
+        a += to_string(device->ruotadx.x - device->pianale.x);
+        a += "' height='";
+        a += to_string((float)1);
+        a += "' x='";
+        a += to_string(device->pianale.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17);
+        a += "' />\n";
+
+        a += "<text xmlns='http://www.w3.org/2000/svg' x='";
+        a += to_string((device->ruotadx.x - device->pianale.x )/ 2 + device->pianale.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10);
+        a += "' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >";
+        a += to_string(device->ruotasx.x);
+        a += "</text>";    }
     
     a += "</g>\n</svg>\n";
     return a;

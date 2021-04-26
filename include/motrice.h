@@ -39,8 +39,8 @@ struct MeniniDevice{
     MeniniRuota ruotadx;
     float w;
     float h;
-    float margineds = 10;
-    float marginess = 10;
+    float margineds = 20;
+    float marginess = 20;
 };
 
 
@@ -70,7 +70,7 @@ int menini_check_ruotadx(MeniniDevice*, float);
 
 int menini_set_ruotadx(MeniniDevice*, float);
 
-string menini_to_svg (MeniniDevice*);
+string menini_to_svg (MeniniDevice*, bool);
 
 void menini_write_file(string,string);
 

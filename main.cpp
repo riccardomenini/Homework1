@@ -57,13 +57,19 @@ MeniniDevice* menini_set(MeniniDevice* device){
 }
 
 int main() {
-    cout << "GENERATORE DI IMMAGINI SVG\n Menu:\n [l] - caricare svg da file\n [c] - creare un nuovo svg\n [s] - salvare svg su file\n [q] - quit\n\n Cosa si desidera fare? \n";
-    char a;
+    //cout << "GENERATORE DI IMMAGINI SVG\n Menu:\n [l] - caricare svg da file\n [c] - creare un nuovo svg\n [s] - salvare svg su file\n [q] - quit\n\n Cosa si desidera fare? \n";
+    //char a;
     string stringa;
     string testoletto;
     MeniniDevice *device = menini_init();
-    cin >> a;
-    while (a != 'q'){
+    //cin >> a;
+
+    testoletto = menini_read_file("../motrice.svg");
+    device = menini_parse(testoletto);
+    stringa = menini_to_svg (device,true);
+    menini_write_file(stringa, "../prova.svg");
+
+    /*while (a != 'q'){
         switch (a)
         {
         case 'l': //caricamento
@@ -78,7 +84,7 @@ int main() {
         case 's'://salvataggio
             cout << "Inserire nome file su cui salvare l'svg ";
             cin >> testoletto;
-            stringa = menini_to_svg (device);
+            stringa = menini_to_svg (device,true);
             menini_write_file(stringa, testoletto);
             break;
         default:
@@ -86,6 +92,6 @@ int main() {
         }
         cout << "GENERATORE DI IMMAGINI SVG\n Menu:\n [l] - caricare svg da file\n [c] - creare un nuovo svg\n [s] - salvare svg su file\n [q] - quit\n\n Cosa si desidera fare? \n";
         cin >> a;
-    }
+    }*/
     return 0;
 }
