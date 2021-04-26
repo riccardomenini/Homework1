@@ -405,13 +405,6 @@ TEST_CASE("menini_read_file dovrebbe ritornare la stringa letta", "[motrice]") {
     REQUIRE( menini_read_file("motrice.svg") == a);   
 }
 
-/*TEST_CASE("menini_cerca dovrebbe ritornare la posizione della stringa cercata", "[motrice]") {
-
-    int *partenza = 0;
-
-    REQUIRE( menini_cerca("ciao", "i", partenza, "o") == (float)1);   
-}*/
-
 TEST_CASE("menini_parse dovrebbe ritornare il device creato dalla stringa letta", "[motrice]") {
 
     string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='200.000000mm' height='269.000000mm' viewBox='0 0 200.000000 269.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='10.000000' y='10.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='10.000000' y='12.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='10.000000' y='50.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
@@ -603,6 +596,12 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruota dx non 
     REQUIRE( device->ruotadx.r == (float)9);  
 }
 
+/*TEST_CASE("menini_cerca dovrebbe ritornare la posizione della stringa cercata", "[motrice]") {
+
+    int *partenza = 0;
+
+    REQUIRE( menini_cerca("ciao", "i", partenza, "o") == (float)1);   
+}*/
 
 
 
@@ -611,11 +610,8 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruota dx non 
 
 
 
-
-//testare menini_reset
-//testare menini_set
 //testare menini_write_file
-//finire menini_cerca
+//testare menini_cerca
 //menini_to_svg ha solo un test
 //menini_read_file ha solo un test
 
