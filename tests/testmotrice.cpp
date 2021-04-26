@@ -609,7 +609,7 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruota dx non 
 
 
 
-
+//da aggiungere:
 //testare menini_write_file
 //testare menini_cerca
 //menini_to_svg ha solo un test
