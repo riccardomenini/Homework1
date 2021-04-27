@@ -7,11 +7,10 @@ Il presente progetto prevede di costruire un file .svg di un certo device che ab
 
 In questo caso come device è stato scelto la motrice di un autotrasportatore che successivamente verrà integrato con un rimorchio prodotto da un altro membro del corso.
 
-![Alt text](./motrice.svg)
 <img src="./motrice.svg">
 
 
-##MISURE
+## MISURE
 Le misure richieste per la creazione dell’file “.svg” sono:
 -la larghezza del pianale
 -l’altezza del pianale 
@@ -20,7 +19,7 @@ Le misure richieste per la creazione dell’file “.svg” sono:
 -i raggi delle ruote (che sono assunti uguali)
 
 
-##LIMITI CHE LE MISURE DEVONO RISPETTARE
+## LIMITI CHE LE MISURE DEVONO RISPETTARE
 Le misure devono rispettare i seguenti limiti:
 -le dimensioni del pianale non hanno alcun limite
 -i raggi delle due ruote devono essere minori dell’altezza del pianale 
@@ -35,7 +34,7 @@ Le misure degli altri componenti invece sono derivate dal programma, in particol
 -le ruote sono incernierate su bordo inferiore del pianale 
 
 
-##USO DEL PROGRAMMA PER L’UTENTE
+## USO DEL PROGRAMMA PER L’UTENTE
 Per usare il programma si può seguire la semplice guida che viene stampata all’inizio di esso:
 
 

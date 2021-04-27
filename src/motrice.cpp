@@ -230,7 +230,7 @@ int menini_set_ruotadx(MeniniDevice* device, float new_x){
 string menini_to_svg (MeniniDevice* device, int with_measures){
     string a;
     a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
-    a += "<svg xmlns='http://www.w3.org/2000/svg' width='";
+    a += "<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='";
     a += to_string(device->w);
     a += "mm' height='";
     a += to_string(device->h);
