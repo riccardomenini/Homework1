@@ -462,7 +462,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += "' height='";
         a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10 + 10);
         a += "' x='";
-        a += to_string(device->pianale.x + device->pianale.w);
+        a += to_string(device->pianale.x + device->pianale.w - 1 );
         a += "' y='";
         a += to_string(device->ruotasx.y);
         a += "' />\n";
