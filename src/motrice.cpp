@@ -163,7 +163,7 @@ int menini_set_raggi(MeniniDevice* device, float new_r){
  */
 
 int menini_check_ruotasx(MeniniDevice* device, float new_x){
-    if (new_x > device->pianale.w / 2){
+    if (new_x > device->pianale.w / 2 || new_x < 0){
         return 1;
     }else{
         return 0;
@@ -196,7 +196,7 @@ int menini_set_ruotasx(MeniniDevice* device, float new_x){
  */
 
 int menini_check_ruotadx(MeniniDevice* device, float new_x){
-    if (new_x < device->pianale.w / 2){
+    if (new_x < device->pianale.w / 2 || new_x > device->pianale.w){
         return 1;
     }else{
         return 0;

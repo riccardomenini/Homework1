@@ -210,6 +210,10 @@ TEST_CASE("menini_check_ruotasx dovrebbe ritornare 1 se la ruotasx non rispetta 
 
     REQUIRE( menini_check_ruotasx(device, new_x) == 1);
 
+    new_x = -3;
+
+    REQUIRE( menini_check_ruotasx(device, new_x) == 1);
+
     delete(device);    
 }
 
@@ -232,6 +236,10 @@ TEST_CASE("menini_set_ruotasx dovrebbe ritornare 1 se la ruotasx non rispetta la
     device->pianale.w = 20;
     float new_x = 40;
 
+    REQUIRE( menini_set_ruotasx(device, new_x) == 1);
+
+    new_x = -3;
+    
     REQUIRE( menini_set_ruotasx(device, new_x) == 1);
 
     delete(device);    
@@ -259,6 +267,10 @@ TEST_CASE("menini_check_ruotadx dovrebbe ritornare 1 se la ruotadx non rispetta 
 
     REQUIRE( menini_check_ruotadx(device, new_x) == 1);
 
+    new_x = 40;
+
+    REQUIRE( menini_check_ruotadx(device, new_x) == 1);
+
     delete(device);    
 }
 
@@ -267,7 +279,7 @@ TEST_CASE("menini_check_ruotadx dovrebbe ritornare 0 se la ruotadx rispetta la l
     MeniniDevice* device = menini_init();
 
     device->pianale.w = 20;
-    float new_x = 40;
+    float new_x = 15;
 
     REQUIRE( menini_check_ruotadx(device, new_x) == 0);
 
@@ -283,6 +295,10 @@ TEST_CASE("menini_set_ruotadx dovrebbe ritornare 1 se la ruotadx non rispetta la
 
     REQUIRE( menini_set_ruotadx(device, new_x) == 1);
 
+    new_x = 40;
+
+    REQUIRE( menini_set_ruotadx(device, new_x) == 1);
+
     delete(device);    
 }
 
@@ -291,7 +307,7 @@ TEST_CASE("menini_set_ruotadx dovrebbe ritornare 0 se la ruotadx rispetta la lar
     MeniniDevice* device = menini_init();
 
     device->pianale.w = 20;
-    float new_x = 40;
+    float new_x = 15;
 
     REQUIRE( menini_set_ruotadx(device, new_x) == 0);
     REQUIRE( device->ruotadx.x == new_x);
