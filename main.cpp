@@ -26,7 +26,7 @@ MeniniDevice* menini_set(MeniniDevice* device){
     cin >> r;
     control = menini_set_ruotasx(device,r);
     while(control==1){
-        cout << "ERRORE: La ruota di sinistra deve essere nel primo terzo del pianale\n";
+        cout << "ERRORE: La ruota di sinistra deve essere nella prima metà del pianale\n";
         cout << "A che distanza dalla linea fronale della cabina deve essere posizionata la ruota anteriore?";
         cin >> r;
         control = menini_set_ruotasx(device,r);
@@ -36,11 +36,15 @@ MeniniDevice* menini_set(MeniniDevice* device){
     cin >> r;
     control = menini_set_ruotadx(device,r);
     while(control==1){
-        cout << "ERRORE: La ruota di destra deve essere nell'ultimo terzo del pianale\n";
+        cout << "ERRORE: La ruota di destra deve essere nella prima metà del pianale\n";
         cout << "A che distanza dalla linea fronale della cabina deve essere posizionata la ruota posteriore?";
         cin >> r;
         control = menini_set_ruotadx(device,r);
     }
+
+    device->ruotasx.x += device->margineds;
+    device->ruotadx.x += device->margineds;
+    cout << device->ruotasx.x << " " << device->ruotadx.x ;
 
     cout << "Qual è il raggio delle ruote?";
     cin >> r;
@@ -57,19 +61,19 @@ MeniniDevice* menini_set(MeniniDevice* device){
 }
 
 int main() {
-    //cout << "GENERATORE DI IMMAGINI SVG\n Menu:\n [l] - caricare svg da file\n [c] - creare un nuovo svg\n [s] - salvare svg su file\n [q] - quit\n\n Cosa si desidera fare? \n";
-    //char a;
+    cout << "GENERATORE DI IMMAGINI SVG\n Menu:\n [l] - caricare svg da file\n [c] - creare un nuovo svg\n [s] - salvare svg su file\n [q] - quit\n\n Cosa si desidera fare? \n";
+    char a;
     string stringa;
     string testoletto;
     MeniniDevice *device = menini_init();
-    //cin >> a;
+    cin >> a;
 
-    testoletto = menini_read_file("../motrice.svg");
+    /*testoletto = menini_read_file("../motrice.svg");
     device = menini_parse(testoletto);
     stringa = menini_to_svg (device,true);
-    menini_write_file(stringa, "../prova.svg");
+    menini_write_file(stringa, "../prova.svg");*/
 
-    /*while (a != 'q'){
+    while (a != 'q'){
         switch (a)
         {
         case 'l': //caricamento
@@ -92,6 +96,6 @@ int main() {
         }
         cout << "GENERATORE DI IMMAGINI SVG\n Menu:\n [l] - caricare svg da file\n [c] - creare un nuovo svg\n [s] - salvare svg su file\n [q] - quit\n\n Cosa si desidera fare? \n";
         cin >> a;
-    }*/
+    }
     return 0;
 }

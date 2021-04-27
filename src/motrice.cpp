@@ -38,19 +38,19 @@ MeniniDevice* menini_reset(MeniniDevice* device){
     device->cabina.h = device->pianale.h * 4;
     
 
-    device->vetro.x = device->margineds;
-    device->vetro.y = device->cabina.w /5;
+    device->vetro.x = device->cabina.x;
+    device->vetro.y = device->cabina.h /5 + device->cabina.y;
     device->vetro.w = device->cabina.w /2;
     device->vetro.h = device->cabina.h /2;
 
-    device->pianale.x = device->margineds;
-    device->pianale.y = device->marginess + device->cabina.h;
+    device->pianale.x = device->cabina.x;
+    device->pianale.y = device->cabina.y + device->cabina.h;
     
     device->ruotasx.y = device->pianale.y + device->pianale.h; 
     device->ruotadx.y = device->pianale.y + device->pianale.h; 
 
-    device->w = 2 * device->pianale.w;//2 * device->margineds + device->pianale.w ;
-    device->h = 2 * device->marginess + device->cabina.w + device->pianale.w + device->ruotadx.r;
+    device->w = 2 * device->pianale.w + 2 * device->margineds;// + device->pianale.w ;
+    device->h = 2 * device->marginess + device->cabina.h + device->pianale.h + device->ruotadx.r + 100;
 
     return device;
     
@@ -443,8 +443,48 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += "' y='";
         a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10);
         a += "' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >";
-        a += to_string(device->ruotasx.x);
-        a += "</text>";    }
+        a += to_string(device->ruotadx.x);
+        a += "</text>";   
+    
+        //pianale
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
+        a += to_string((float)1);
+        a += "' height='";
+        a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10 +10);
+        a += "' x='";
+        a += to_string(device->pianale.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y );
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='";
+        a += to_string((float)1);
+        a += "' height='";
+        a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10 + 10);
+        a += "' x='";
+        a += to_string(device->pianale.x + device->pianale.w);
+        a += "' y='";
+        a += to_string(device->ruotasx.y);
+        a += "' />\n";
+
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='";
+        a += to_string(device->pianale.w);
+        a += "' height='";
+        a += to_string((float)1);
+        a += "' x='";
+        a += to_string(device->pianale.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10 + 7);
+        a += "' />\n";
+
+        a += "<text xmlns='http://www.w3.org/2000/svg' x='";
+        a += to_string((device->pianale.w)/ 2 + device->pianale.x);
+        a += "' y='";
+        a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10 + 7 + 10);
+        a += "' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >";
+        a += to_string(device->pianale.w);
+        a += "</text>";   
+    }
     
     a += "</g>\n</svg>\n";
     return a;
