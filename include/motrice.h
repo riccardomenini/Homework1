@@ -70,7 +70,7 @@ int menini_check_ruotadx(MeniniDevice*, float);
 
 int menini_set_ruotadx(MeniniDevice*, float);
 
-string menini_to_svg (MeniniDevice*, bool);
+string menini_to_svg (MeniniDevice*, int);
 
 void menini_write_file(string,string);
 

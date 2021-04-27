@@ -227,7 +227,7 @@ int menini_set_ruotadx(MeniniDevice* device, float new_x){
  * @param device contiene i parametri dell'immagine
  * @return stringa da stampare
  */
-string menini_to_svg (MeniniDevice* device, bool with_measures){
+string menini_to_svg (MeniniDevice* device, int with_measures){
     string a;
     a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
     a += "<svg xmlns='http://www.w3.org/2000/svg' width='";
@@ -290,7 +290,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
     a += to_string(device->ruotadx.r);
     a += "' />\n";
 
-    if (with_measures){
+    if (with_measures == 1){
         a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
         a += to_string(device->pianale.w / 10);
         a += "' height='";
@@ -330,7 +330,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += "</text>";
 
         //raggioruotasx
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect23' width='";
         a += to_string((float)1);
         a += "' height='";
         a += to_string(device->ruotasx.r + device->ruotasx.r / 2);
@@ -340,7 +340,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += to_string(device->ruotasx.y);
         a += "' />\n";
 
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect24' width='";
         a += to_string((float)1);
         a += "' height='";
         a += to_string(device->ruotasx.r + device->ruotasx.r / 2);
@@ -350,7 +350,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += to_string(device->ruotasx.y);
         a += "' />\n";
 
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect25' width='";
         a += to_string(device->ruotasx.r);
         a += "' height='";
         a += to_string((float)1);
@@ -369,7 +369,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += "</text>";
 
         //ruotasx
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect26' width='";
         a += to_string((float)1);
         a += "' height='";
         a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 20);
@@ -379,7 +379,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += to_string(device->ruotasx.y );
         a += "' />\n";
 
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect27' width='";
         a += to_string((float)1);
         a += "' height='";
         a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 20);
@@ -389,7 +389,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += to_string(device->ruotasx.y );
         a += "' />\n";
 
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect28' width='";
         a += to_string(device->ruotasx.x - device->pianale.x);
         a += "' height='";
         a += to_string((float)1);
@@ -408,7 +408,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += "</text>";
 
         //ruotadx
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect29' width='";
         a += to_string((float)1);
         a += "' height='";
         a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 20);
@@ -418,7 +418,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += to_string(device->ruotasx.y );
         a += "' />\n";
 
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect30' width='";
         a += to_string((float)1);
         a += "' height='";
         a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 20);
@@ -428,7 +428,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += to_string(device->ruotasx.y);
         a += "' />\n";
 
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect31' width='";
         a += to_string(device->ruotadx.x - device->pianale.x);
         a += "' height='";
         a += to_string((float)1);
@@ -447,7 +447,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += "</text>";   
     
         //pianale
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect32' width='";
         a += to_string((float)1);
         a += "' height='";
         a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10 +10);
@@ -457,7 +457,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += to_string(device->ruotasx.y );
         a += "' />\n";
 
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect33' width='";
         a += to_string((float)1);
         a += "' height='";
         a += to_string(device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10 + 10);
@@ -467,7 +467,7 @@ string menini_to_svg (MeniniDevice* device, bool with_measures){
         a += to_string(device->ruotasx.y);
         a += "' />\n";
 
-        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='";
+        a += "<rect style='fill:#000000;stroke-width:0.310366' id='rect34' width='";
         a += to_string(device->pianale.w);
         a += "' height='";
         a += to_string((float)1);

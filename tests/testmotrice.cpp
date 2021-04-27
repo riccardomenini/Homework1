@@ -2,81 +2,6 @@
 #include "catch2/catch2.hpp"
 #include "motrice.h"
 
-/*
-TEST_CASE("init should succeed with non-zero denominator", "[fraction]") {
-        
-    MyFraction* frac = my_init(3,1);
-    REQUIRE( frac != NULL);
-
-    REQUIRE( frac->a == 3);
-    REQUIRE( frac->b == 1);
-
-    my_destroy(frac);    
-}
-
-
-TEST_CASE("my_init on zero denominator should return NULL", "[fraction]") {
-    
-    REQUIRE( my_init(3,0) == NULL);        
-}
-
-
-TEST_CASE("my_square should return a new squared fraction", "[fraction]") {
-
-    MyFraction* orig = my_init(2,3);
-
-    MyFraction * squared = my_square(orig);
-    
-    REQUIRE(squared->a == 4);
-    REQUIRE(squared->b == 9);
-
-    REQUIRE(orig->a == 2);  // should preserve original
-    REQUIRE(orig->b == 3);
-    
-    my_destroy(squared);
-    my_destroy(orig);    
-}
-
-TEST_CASE("my_div should give fraction as double", "[fraction]") {
-    MyFraction* frac = my_init(1,3);    
-    REQUIRE(my_div(frac) == Approx(0.3333333333));
-    my_destroy(frac);
-    
-}
-
-
-#include "cxx_examples.h"
-#include "catch2/catch2.hpp"
-
-
-using namespace cxx_examples;
-
-TEST_CASE("negative square_root should throw exception ", "[cxx_examples]") {
-    
-
-    // expects std::invalid_argument exception, if it is not thrown test fails        
-    REQUIRE_THROWS_AS( square_root(-1.0), std::invalid_argument);
-
-    REQUIRE(square_root(0.0) == Approx(0.0));
-}
-
-
-TEST_CASE("square_root >= 0 should give positive result ", "[cxx_examples]") {
-                
-    REQUIRE(square_root(4.0) == Approx(2.0));
-}
-
-
-TEST_CASE("say_hello should produce a string ", "[cxx_examples]") {
-    
-    REQUIRE( cxx_examples::say_hello("peppo") == std::string("hello peppo"));        
-}
-
-
-
-*/
-
-
 TEST_CASE("init dovrebbe ritornare un puntatore a un device != NULL", "[motrice]") {
         
     MeniniDevice* device = menini_init();
@@ -389,9 +314,31 @@ TEST_CASE("menini_to_svg dovrebbe ritornare la stringa corrispondente", "[motric
 
     menini_reset(device);
 
-    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='200.000000mm' height='269.000000mm' viewBox='0 0 200.000000 269.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='10.000000' y='10.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='10.000000' y='12.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='10.000000' y='50.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
+    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='420.000000mm' height='219.000000mm' viewBox='0 0 420.000000 219.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='30.000000' y='30.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='30.000000' y='38.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='30.000000' y='70.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
     
-    REQUIRE( menini_to_svg(device) == a);
+    REQUIRE( menini_to_svg(device, false) == a);
+
+    delete(device);    
+}
+
+TEST_CASE("menini_to_svg dovrebbe ritornare la stringa corrispondente anche nel caso di presenza delle misure", "[motrice]") {
+        
+    MeniniDevice* device = menini_init();
+    
+    device->pianale.w = (float)180;
+    device->pianale.h = (float)10;
+
+    device->ruotasx.x = (float)40 + 30;
+    device->ruotasx.r = (float)9;
+
+    device->ruotadx.x = (float)140 + 30;
+    device->ruotadx.r = (float)9;
+
+    menini_reset(device);
+
+    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='420.000000mm' height='219.000000mm' viewBox='0 0 420.000000 219.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='30.000000' y='30.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='30.000000' y='38.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='30.000000' y='70.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='70.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='170.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='18.000000' height='1.000000' x='210.000000' y='70.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='18.000000' height='1.000000' x='210.000000' y='79.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='1.000000' height='10.000000' x='225.000000' y='70.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='228.000000' y='75.000000' fill='black' dominant-baseline='middle' text-anchor='start' font-size='8px' >10.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect23' width='1.000000' height='13.500000' x='60.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect24' width='1.000000' height='13.500000' x='70.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect25' width='9.000000' height='1.000000' x='61.000000' y='92.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='65.500000' y='102.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >9.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect26' width='1.000000' height='32.000000' x='30.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect27' width='1.000000' height='32.000000' x='70.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect28' width='40.000000' height='1.000000' x='30.000000' y='109.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='50.000000' y='119.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >70.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect29' width='1.000000' height='49.000000' x='30.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect30' width='1.000000' height='49.000000' x='170.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect31' width='140.000000' height='1.000000' x='30.000000' y='126.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='100.000000' y='136.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >170.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect32' width='1.000000' height='66.000000' x='30.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect33' width='1.000000' height='66.000000' x='209.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect34' width='180.000000' height='1.000000' x='30.000000' y='143.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='120.000000' y='153.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >180.000000</text></g>\n</svg>\n";
+    
+    REQUIRE( menini_to_svg(device, true) == a);
 
     delete(device);    
 }
@@ -488,8 +435,8 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni del device non rich
 
     menini_reset(device);
 
-    REQUIRE( device->w == (float)200);
-    REQUIRE( device->h == (float)269);   
+    REQUIRE( device->w == (float)(2 * 180 + 2 * device->margineds));
+    REQUIRE( device->h == (float)(2 * device->marginess + 40 + 10 + 9 + 100));   
 }
 
 
@@ -510,8 +457,8 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della cabina non ri
 
     REQUIRE( device->cabina.w == (float)60);
     REQUIRE( device->cabina.h == (float)40); 
-    REQUIRE( device->cabina.x == (float)10);
-    REQUIRE( device->cabina.y == (float)10); 
+    REQUIRE( device->cabina.x == (float)device->margineds);
+    REQUIRE( device->cabina.y == (float)device->marginess); 
 }
 
 TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni del vetro non richieste in input", "[motrice]") {
@@ -531,8 +478,8 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni del vetro non richi
 
     REQUIRE( device->vetro.w == (float)30);
     REQUIRE( device->vetro.h == (float)20); 
-    REQUIRE( device->vetro.x == (float)10);
-    REQUIRE( device->vetro.y == (float)12);  
+    REQUIRE( device->vetro.x == (float)device->margineds);
+    REQUIRE( device->vetro.y == (float)device->marginess + 8);  
 }
 
 TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni del pianale non richieste in input", "[motrice]") {
@@ -552,8 +499,8 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni del pianale non ric
 
     REQUIRE( device->pianale.w == (float)180);
     REQUIRE( device->pianale.h == (float)10); 
-    REQUIRE( device->pianale.x == (float)10);
-    REQUIRE( device->pianale.y == (float)50);  
+    REQUIRE( device->pianale.x == (float)device->margineds);
+    REQUIRE( device->pianale.y == (float)device->marginess + 40);  
 }
 
 TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruotasx non richieste in input", "[motrice]") {
@@ -572,7 +519,7 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruotasx non r
     menini_reset(device); 
  
     REQUIRE( device->ruotasx.x == (float)40);
-    REQUIRE( device->ruotasx.y == (float)60);
+    REQUIRE( device->ruotasx.y == (float)device->marginess + 40 +10);
     REQUIRE( device->ruotasx.r == (float)9);  
 }
 
@@ -592,7 +539,7 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruota dx non 
     menini_reset(device); 
  
     REQUIRE( device->ruotadx.x == (float)140);
-    REQUIRE( device->ruotadx.y == (float)60);
+    REQUIRE( device->ruotadx.y == (float)device->marginess + 40 +10);
     REQUIRE( device->ruotadx.r == (float)9);  
 }
 

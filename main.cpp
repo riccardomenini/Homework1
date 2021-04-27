@@ -36,7 +36,7 @@ MeniniDevice* menini_set(MeniniDevice* device){
     cin >> r;
     control = menini_set_ruotadx(device,r);
     while(control==1){
-        cout << "ERRORE: La ruota di destra deve essere nella prima metà del pianale\n";
+        cout << "ERRORE: La ruota di destra deve essere nella seconda metà del pianale\n";
         cout << "A che distanza dalla linea fronale della cabina deve essere posizionata la ruota posteriore? ";
         cin >> r;
         control = menini_set_ruotadx(device,r);
@@ -45,12 +45,12 @@ MeniniDevice* menini_set(MeniniDevice* device){
     device->ruotasx.x += device->margineds;
     device->ruotadx.x += device->margineds;
 
-    cout << "Qual è il raggio delle ruote?";
+    cout << "Qual è il raggio delle ruote? ";
     cin >> r;
     control = menini_set_raggi(device,r);
     while(control==1){
         cout << "ERRORE: Le ruote devono avere raggio inferiore all'altezza del pianale\n";
-        cout << "Qual è il raggio delle ruote?";
+        cout << "Qual è il raggio delle ruote? ";
         cin >> r;
         control = menini_set_raggi(device,r);
     }
@@ -83,14 +83,18 @@ int main() {
             cout << "Inserire nome file su cui salvare l'svg ";
             cin >> testoletto;
             int risposta;
-            cout << "Si desidera visializzare le misure? (Premere 1 per si, 2 per no) ";
+            cout << "Si desidera visializzare le misure? (Premere 1 per si, 0 per no) ";
             cin >> risposta;
             while(risposta != 1 && risposta != 0){
                 cout << "ERRORE: Inserire 1 o 0\n";
-                cout << "Si desidera visializzare le misure? (Premere 1 per si, 2 per no) ";
+                cout << "Si desidera visializzare le misure? (Premere 1 per si, 0 per no) ";
                 cin >> risposta;
             }
+            //if (risposta == 1){
             stringa = menini_to_svg (device,risposta);
+            /*}else{
+                stringa = menini_to_svg (device,false);
+            }*/
             menini_write_file(stringa, testoletto);
             break;
         default:
