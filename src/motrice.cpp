@@ -404,7 +404,7 @@ string menini_to_svg (MeniniDevice* device, int with_measures){
         a += "' y='";
         a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 10);
         a += "' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >";
-        a += to_string(device->ruotasx.x);
+        a += to_string(device->ruotasx.x - device->pianale.x);
         a += "</text>";
 
         //ruotadx
@@ -443,7 +443,7 @@ string menini_to_svg (MeniniDevice* device, int with_measures){
         a += "' y='";
         a += to_string(device->ruotasx.y + device->ruotasx.r + device->ruotasx.r/ 3 + 17 + 17 + 10);
         a += "' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >";
-        a += to_string(device->ruotadx.x);
+        a += to_string(device->ruotadx.x - device->pianale.x);
         a += "</text>";   
     
         //pianale
