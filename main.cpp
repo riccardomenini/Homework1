@@ -1,5 +1,7 @@
 #include <iostream>
 #include "motrice.h"
+#include "machine.h"
+#include "car_trailer.h"
 #include <string>
 
 using namespace std;
@@ -65,6 +67,8 @@ int main() {
     string stringa;
     string testoletto;
     MeniniDevice *device = menini_init();
+    OselinDevice *oselindev;
+    oselin_measures(oselindev);
     cin >> a;
 
     while (a != 'q'){

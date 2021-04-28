@@ -1,4 +1,6 @@
 #include "motrice.h"
+#include "machine.h"
+#include "car_trailer.h"
 #include <iostream>
 #include <string>
 #include <fstream>

@@ -9,8 +9,11 @@ set(CMAKE_CXX_STANDARD 17)
 # EXECUTABLE SECTION
 add_executable(mainEntry main.cpp)
 target_include_directories(mainEntry PRIVATE include)
+target_include_directories(mainEntry PRIVATE diitpahomework1/include)
 # Class A is not a library: its source file needs to be included in the target sources
 target_sources(mainEntry PRIVATE src/motrice.cpp)
+target_sources(mainEntry PRIVATE src/machine.cpp)
+target_sources(mainEntry PRIVATE diitpahomework1/src/CarTrailer.cpp)
 target_link_libraries(mainEntry)
 
 # TESTS SECTION
