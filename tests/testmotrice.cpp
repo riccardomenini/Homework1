@@ -330,7 +330,7 @@ TEST_CASE("menini_to_svg dovrebbe ritornare la stringa corrispondente", "[motric
 
     menini_reset(device);
 
-    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='420.000000mm' height='219.000000mm' viewBox='0 0 420.000000 219.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='30.000000' y='30.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='30.000000' y='38.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='30.000000' y='70.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
+    string a = "<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='30.000000' y='30.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='30.000000' y='38.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='30.000000' y='70.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n";
     
     REQUIRE( menini_to_svg(device, false) == a);
 
@@ -352,14 +352,23 @@ TEST_CASE("menini_to_svg dovrebbe ritornare la stringa corrispondente anche nel 
 
     menini_reset(device);
 
-    string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='420.000000mm' height='219.000000mm' viewBox='0 0 420.000000 219.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='30.000000' y='30.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='30.000000' y='38.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='30.000000' y='70.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='70.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='170.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='18.000000' height='1.000000' x='210.000000' y='70.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='18.000000' height='1.000000' x='210.000000' y='79.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='1.000000' height='10.000000' x='225.000000' y='70.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='228.000000' y='75.000000' fill='black' dominant-baseline='middle' text-anchor='start' font-size='8px' >10.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect23' width='1.000000' height='13.500000' x='60.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect24' width='1.000000' height='13.500000' x='70.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect25' width='9.000000' height='1.000000' x='61.000000' y='92.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='65.500000' y='102.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >9.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect26' width='1.000000' height='32.000000' x='30.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect27' width='1.000000' height='32.000000' x='70.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect28' width='40.000000' height='1.000000' x='30.000000' y='109.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='50.000000' y='119.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >40.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect29' width='1.000000' height='49.000000' x='30.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect30' width='1.000000' height='49.000000' x='170.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect31' width='140.000000' height='1.000000' x='30.000000' y='126.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='100.000000' y='136.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >140.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect32' width='1.000000' height='66.000000' x='30.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect33' width='1.000000' height='66.000000' x='209.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect34' width='180.000000' height='1.000000' x='30.000000' y='143.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='120.000000' y='153.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >180.000000</text></g>\n</svg>\n";
+    string a = "<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='30.000000' y='30.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='30.000000' y='38.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='30.000000' y='70.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='70.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='170.000000' cy='80.000000' rx='9.000000' ry='9.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect20' width='18.000000' height='1.000000' x='210.000000' y='70.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect21' width='18.000000' height='1.000000' x='210.000000' y='79.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect22' width='1.000000' height='10.000000' x='225.000000' y='70.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='228.000000' y='75.000000' fill='black' dominant-baseline='middle' text-anchor='start' font-size='8px' >10.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect23' width='1.000000' height='13.500000' x='60.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect24' width='1.000000' height='13.500000' x='70.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect25' width='9.000000' height='1.000000' x='61.000000' y='92.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='65.500000' y='102.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >9.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect26' width='1.000000' height='32.000000' x='30.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect27' width='1.000000' height='32.000000' x='70.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect28' width='40.000000' height='1.000000' x='30.000000' y='109.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='50.000000' y='119.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >40.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect29' width='1.000000' height='49.000000' x='30.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect30' width='1.000000' height='49.000000' x='170.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect31' width='140.000000' height='1.000000' x='30.000000' y='126.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='100.000000' y='136.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >140.000000</text><rect style='fill:#000000;stroke-width:0.310366' id='rect32' width='1.000000' height='66.000000' x='30.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect33' width='1.000000' height='66.000000' x='209.000000' y='80.000000' />\n<rect style='fill:#000000;stroke-width:0.310366' id='rect34' width='180.000000' height='1.000000' x='30.000000' y='143.000000' />\n<text xmlns='http://www.w3.org/2000/svg' x='120.000000' y='153.000000' fill='black' dominant-baseline='middle' text-anchor='middle' font-size='8px' >180.000000</text>";
     
     REQUIRE( menini_to_svg(device, true) == a);
 
     delete(device);    
 }
 
-TEST_CASE("menini_read_file dovrebbe ritornare la stringa letta", "[motrice]") {
+TEST_CASE("menini_to_svg dovrebbe ERRORE se il device è NULL", "[motrice]") {
+        
+    MeniniDevice* device = NULL;
+    
+    REQUIRE( menini_to_svg(device, true) == "ERRORE: stringa vuota");
+
+    delete(device);    
+}
+
+TEST_CASE("menini_read_file dovrebbe ritornare la stringa letta. Test valido anche per menini_write_file", "[motrice]") {
 
     string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='200.000000mm' height='269.000000mm' viewBox='0 0 200.000000 269.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='60.000000' height='40.000000' x='10.000000' y='10.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='30.000000' height='20.000000' x='10.000000' y='12.000000' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='180.000000' height='10.000000' x='10.000000' y='50.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='40.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='140.000000' cy='60.000000' rx='9.000000' ry='9.000000' />\n</g>\n</svg>\n";
     
@@ -434,6 +443,11 @@ TEST_CASE("menini_parse dovrebbe ritornare la ruota dx dalla stringa letta", "[m
     REQUIRE( device->ruotadx.x == (float)140);
     REQUIRE( device->ruotadx.y == (float)60);
     REQUIRE( device->ruotadx.r == (float)9);  
+}
+
+TEST_CASE("menini_parse dovrebbe ritornare NULL se passo stringa vuota", "[motrice]") {
+ 
+    REQUIRE( menini_parse("") == NULL);  
 }
 
 TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni del device non richieste in input", "[motrice]") {
@@ -559,6 +573,15 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruota dx non 
     REQUIRE( device->ruotadx.r == (float)9);  
 }
 
+TEST_CASE("menini_reset dovrebbe settare null se do ingresso null", "[motrice]") {
+
+    MeniniDevice *device = NULL; 
+
+    menini_reset(device); 
+ 
+    REQUIRE( menini_reset(device) == NULL);
+}
+
 /*TEST_CASE("menini_cerca dovrebbe ritornare la posizione della stringa cercata", "[motrice]") {
 
     int *partenza = 0;
@@ -573,9 +596,9 @@ TEST_CASE("menini_reset dovrebbe settare tutte le dimensioni della ruota dx non 
 
 
 //da aggiungere:
-//testare menini_write_file
 //testare menini_cerca
 //menini_to_svg ha solo un test
 //menini_read_file ha solo un test
+//menini_write_file ha solo un test
 
 

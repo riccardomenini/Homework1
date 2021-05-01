@@ -31,6 +31,9 @@ MeniniDevice* menini_init(){
  */
 
 MeniniDevice* menini_reset(MeniniDevice* device){
+    if (device==NULL){
+        return NULL;
+    }
 
     device->ruotasx.r = device->ruotadx.r;
 
@@ -227,9 +230,12 @@ int menini_set_ruotadx(MeniniDevice* device, float new_x){
  * Crea e ritorna la stringa corrispondente al device creato
  *
  * @param device contiene i parametri dell'immagine
- * @return stringa da stampare
+ * @return stringa da stampare o errore
  */
 string menini_to_svg (MeniniDevice* device, int with_measures){
+    if(device==NULL){
+        return "ERRORE: stringa vuota";
+    }
     string a;
     a += "<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='";
     a += to_string(device->cabina.w);
@@ -485,9 +491,11 @@ string menini_to_svg (MeniniDevice* device, int with_measures){
  * @param stringa contiene la tringa da scrivere
  */
 void menini_write_file(string stringa, string nomefile){
-    ofstream MyFile(nomefile);
-    MyFile << stringa;
-    MyFile.close();
+    if(nomefile!=""){
+        ofstream MyFile(nomefile);
+        MyFile << stringa;
+        MyFile.close();
+    }
 };
 
 /**
@@ -511,7 +519,7 @@ void menini_write_file(string stringa, string nomefile){
   * @param cercata contiene la stringa da cercare
   * @param partenza la posizione da cui partire nella ricerca
   * @param fine contiene la stringa che segna la fine del numero
-  * @return il device
+  * @return il numero
   */
 float menini_cerca(string stringa, string cercata, int & partenza, string fine){
     string numero;
@@ -540,39 +548,43 @@ float menini_cerca(string stringa, string cercata, int & partenza, string fine){
 
     int partenza = 0;
 
-    //width e height svg
-    device->w = menini_cerca(stringa, "width='", partenza, "m");
-    device->h = menini_cerca(stringa, "height='", partenza, "m");
-    //cout << device->w << " " << device->h;
+    if (stringa!=""){
+        //width e height svg
+        device->w = menini_cerca(stringa, "width='", partenza, "m");
+        device->h = menini_cerca(stringa, "height='", partenza, "m");
+        //cout << device->w << " " << device->h;
 
-    //cabina
-    device->cabina.w = menini_cerca(stringa, "width='", partenza, "'");
-    device->cabina.h = menini_cerca(stringa, "height='", partenza, "'");
-    device->cabina.x = menini_cerca(stringa, "x='", partenza, "'");
-    device->cabina.y = menini_cerca(stringa, "y='", partenza, "'");
-    
-    //vetro
-    device->vetro.w = menini_cerca(stringa, "width='", partenza, "'");
-    device->vetro.h = menini_cerca(stringa, "height='", partenza, "'");
-    device->vetro.x = menini_cerca(stringa, "x='", partenza, "'");
-    device->vetro.y = menini_cerca(stringa, "y='", partenza, "'");
-    
-    //pianale
-    device->pianale.w = menini_cerca(stringa, "width='", partenza, "'");
-    device->pianale.h = menini_cerca(stringa, "height='", partenza, "'");
-    device->pianale.x = menini_cerca(stringa, "x='", partenza, "'");
-    device->pianale.y = menini_cerca(stringa, "y='", partenza, "'");
-    
-    //ruotasx
-    device->ruotasx.x = menini_cerca(stringa, "cx='", partenza, "'");
-    device->ruotasx.y = menini_cerca(stringa, "cy='", partenza, "'");
-    device->ruotasx.r = menini_cerca(stringa, "rx='", partenza, "'");
-    
-    //ruotadx
+        //cabina
+        device->cabina.w = menini_cerca(stringa, "width='", partenza, "'");
+        device->cabina.h = menini_cerca(stringa, "height='", partenza, "'");
+        device->cabina.x = menini_cerca(stringa, "x='", partenza, "'");
+        device->cabina.y = menini_cerca(stringa, "y='", partenza, "'");
+        
+        //vetro
+        device->vetro.w = menini_cerca(stringa, "width='", partenza, "'");
+        device->vetro.h = menini_cerca(stringa, "height='", partenza, "'");
+        device->vetro.x = menini_cerca(stringa, "x='", partenza, "'");
+        device->vetro.y = menini_cerca(stringa, "y='", partenza, "'");
+        
+        //pianale
+        device->pianale.w = menini_cerca(stringa, "width='", partenza, "'");
+        device->pianale.h = menini_cerca(stringa, "height='", partenza, "'");
+        device->pianale.x = menini_cerca(stringa, "x='", partenza, "'");
+        device->pianale.y = menini_cerca(stringa, "y='", partenza, "'");
+        
+        //ruotasx
+        device->ruotasx.x = menini_cerca(stringa, "cx='", partenza, "'");
+        device->ruotasx.y = menini_cerca(stringa, "cy='", partenza, "'");
+        device->ruotasx.r = menini_cerca(stringa, "rx='", partenza, "'");
+        
+        //ruotadx
 
-    device->ruotadx.x = menini_cerca(stringa, "cx='", partenza, "'");
-    device->ruotadx.y = menini_cerca(stringa, "cy='", partenza, "'");
-    device->ruotadx.r = menini_cerca(stringa, "rx='", partenza, "'");
-    //cout << device->ruotadx.x << " " << device->ruotadx.y << " " << device->ruotadx.r << " \n";
+        device->ruotadx.x = menini_cerca(stringa, "cx='", partenza, "'");
+        device->ruotadx.y = menini_cerca(stringa, "cy='", partenza, "'");
+        device->ruotadx.r = menini_cerca(stringa, "rx='", partenza, "'");
+        //cout << device->ruotadx.x << " " << device->ruotadx.y << " " << device->ruotadx.r << " \n";
+    }else{
+        return NULL;
+    }
     return device;
  }
