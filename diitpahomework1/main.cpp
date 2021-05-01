@@ -67,13 +67,22 @@ string load(OselinDevice *dev, int n_args = 0, char *param[] = NULL){
 string create(OselinDevice *dev, int n_args = 0, char *param[] = NULL){
 
     float parameters[5];
-    
+    Parameters p;
     if (n_args != 0){
         try
         {
-            dev->param.svgwidth  = stof(param[2]);
-            dev->param.svgheight = stof(param[3]);
-            for (int i=0;i<5;i++) parameters[i] = stof(param[i+4]);
+            p.svgwidth  = stof(param[2]);
+            p.svgheight = stof(param[3]);
+
+           
+            p.length    = stof(param[4]);
+            p.height    = stof(param[5]);
+            p.radius    = stof(param[6]);
+            p.ncars     = atoi(param[7]);
+            p.nfloors   = atoi(param[8]);
+            //p.margin;
+
+            //for (int i=0;i<5;i++) parameters[i] = stof(param[i+4]);
         }
         catch(const exception& e)
         {
@@ -84,22 +93,28 @@ string create(OselinDevice *dev, int n_args = 0, char *param[] = NULL){
         
     }
     else{
-        for (int i=0; i<7; i++){
-            cout << questions[i];
-            try{
-                if (i==0) cin >> dev->param.svgwidth;
-                else if (i==1) cin >> dev->param.svgheight;
+        try{
+            for (int i=0; i<7; i++){
+                cout << questions[i];
+                if (i==0) cin >> p.svgwidth;
+                else if (i==1) cin >> p.svgheight;
                 else cin >> parameters[i-2];
-            }
-            catch(const exception& e)
-            {
-                return errors(8);
+            }}
+        catch(const exception& e){
+            return errors(8);
 
-            }
         }
+
+        p.length    = parameters[0];
+        p.height    = parameters[1];
+        p.radius    = parameters[2];
+        p.ncars     = (int)parameters[3];
+        p.nfloors   = (int)parameters[4];
+        //p.margin;
     }
     
-    if (!oselin_init(dev, parameters)){
+    (*dev) = (*oselin_init(p));
+    if (dev!=NULL){
         oselin_trigonometry(dev);
         return "Created successfully";
     }
@@ -145,11 +160,13 @@ string change(OselinDevice *dev){
 
     int choice; float newvalue;
     string help = "Choose what to change:\n";
-    help += "[0] Set new car length\n";
-    help += "[1] Set new car height\n";
-    help += "[2] Set new radius\n";
-    help += "[3] Set new number of cars per trailer\n";
-    help += "[4] Set new number of floors\n";
+    help += "[0] Set new car SVG width\n";
+    help += "[1] Set new car SVG height\n";
+    help += "[2] Set new car length\n";
+    help += "[3] Set new car height\n";
+    help += "[4] Set new radius\n";
+    help += "[5] Set new number of cars per trailer\n";
+    help += "[6] Set new number of floors\n";
 
     cout << help << endl;
     cout << "Your choice: ";
@@ -157,11 +174,46 @@ string change(OselinDevice *dev){
     cout << "New value: ";
     cin >> newvalue;
 
-    if (choice > -1 || choice < 5){
-        if (oselin_set(dev,choice, newvalue) != NULL) {
-            (*dev) = (*oselin_set(dev,choice, newvalue));
-            return "changed successfully";
+    switch (choice)
+    {
+    case 0:
+        if(oselin_set_svgwidth(dev,newvalue) != NULL){
+            (*dev) = (*oselin_set_svgwidth(dev,newvalue));
+            return "Changed successfully!";
         }
+    case 1:
+        if(oselin_set_svgheight(dev,newvalue) != NULL){
+            (*dev) = (*oselin_set_svgheight(dev,newvalue));
+            return "Changed successfully!";
+        }
+    case 2:
+        if(oselin_set_length(dev,newvalue) != NULL){
+            (*dev) = (*oselin_set_length(dev,newvalue));
+            return "Changed successfully!";
+        }
+    case 3:
+        if(oselin_set_height(dev,newvalue) != NULL){
+            (*dev) = (*oselin_set_height(dev,newvalue));
+            return "Changed successfully!";
+        }
+    case 4:
+        if(oselin_set_radius(dev,newvalue) != NULL){
+            (*dev) = (*oselin_set_radius(dev,newvalue));
+            return "Changed successfully!";
+        }
+    case 5:
+        if(oselin_set_ncars(dev,(int)newvalue) != NULL){
+            (*dev) = (*oselin_set_ncars(dev,(int)newvalue));
+            return "Changed successfully!";
+        }
+    case 6:
+        if(oselin_set_nfloors(dev,(int)newvalue) != NULL){
+            (*dev) = (*oselin_set_nfloors(dev,(int)newvalue));
+            return "Changed successfully!";
+        }
+    
+    default:
+        break;
     }
     return "Aborting...";
 }
@@ -198,12 +250,18 @@ string machine_create(OselinDevice *dev, OselinMachine *mach){
     }
     cout << "How many trailers? ";
     cin >> ntrailers;
+    Parameters p;
+    p.length    = parameters[0];
+    p.height    = parameters[1];
+    p.radius    = parameters[2];
+    p.ncars     = (int)parameters[3];
+    p.nfloors   = (int)parameters[4];
 
     mach->trailerarray = new OselinDevice* [ntrailers];        
-    mach->cararray = new coca_device* [(int)parameters[4]*(int)parameters[3]*ntrailers];
+    mach->cararray = new coca_device* [p.nfloors * p.ncars *ntrailers];
 
-    if (oselin_machine_init(dev, ntrailers,parameters)!= NULL){
-        (*mach) = (*oselin_machine_init(dev, ntrailers,parameters));
+    if (oselin_machine_init(p, ntrailers) != NULL){
+        (*mach) = (*oselin_machine_init(p, ntrailers));
         return "Machine created successfully.";
     }
     return "An error occurred.";
@@ -213,10 +271,9 @@ string machine_create(OselinDevice *dev, OselinMachine *mach){
  * Change parameters of an existing machine
  **/
 string machine_change(OselinDevice *dev, OselinMachine *mach){
-    if (mach->parameters[0] != 0){
+    if (mach->parameters.length != 0){
         int choice; float newvalue;
-        float array [5];
-        for (int i=0; i < 5; i++) array[i] = mach->parameters[i];
+        Parameters p = mach->parameters;
         string help = "Choose what to change:\n";
         help += "[0] Set new car length\n";
         help += "[1] Set new car height\n";
@@ -233,8 +290,8 @@ string machine_change(OselinDevice *dev, OselinMachine *mach){
 
         if (choice > -1 || choice < 6){
             if (choice == 5) mach->length = (int)newvalue;
-            else array[choice] = newvalue;
-            (*mach) = (*oselin_machine_init(dev, mach->length, array));
+            //else array[choice] = newvalue;
+            //(*mach) = (*oselin_machine_init(dev, mach->length, array));
             return "Machine updated.";
         }
         return "Aborting.";
@@ -344,7 +401,7 @@ void mainloop(OselinDevice *dev, OselinMachine *mach){
             cout << "Command not found." << endl;
             break;
         }
-        //system("clear");
+        system("clear");
         cout << message << " What's next?" << endl;
     }while(inloop);
 

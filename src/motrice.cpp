@@ -231,17 +231,6 @@ int menini_set_ruotadx(MeniniDevice* device, float new_x){
  */
 string menini_to_svg (MeniniDevice* device, int with_measures){
     string a;
-    a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
-    a += "<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='";
-    a += to_string(device->w);
-    a += "mm' height='";
-    a += to_string(device->h);
-    a += "mm' viewBox='0 0 ";
-    a += to_string(device->w);
-    a += " ";
-    a += to_string(device->h);
-    a += "'>\n<g>\n";
-
     a += "<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='";
     a += to_string(device->cabina.w);
     a += "' height='";
@@ -487,8 +476,6 @@ string menini_to_svg (MeniniDevice* device, int with_measures){
         a += to_string(device->pianale.w);
         a += "</text>";   
     }
-    
-    a += "</g>\n</svg>\n";
     return a;
 }
 

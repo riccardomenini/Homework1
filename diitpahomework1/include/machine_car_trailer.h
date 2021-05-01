@@ -10,29 +10,16 @@ struct OselinMachine{
     OselinDevice ** trailerarray;
     coca_device  ** cararray;
     std::string svg;
-    float parameters[5];
+    Parameters parameters;
     int length;
 };
-
-/**
- * Fill some parameters which weren't considered or modified by the author @GiacomoCorradini
- * @param coca_device (=car)
- * @param param from which newparam can be calculated
- **/
-void oselin_coca_implementation(coca_device *, float[5]);    
-
-/**
- * Convert car to svg
- * @param coca_device (or car struct)
- **/
-std::string oselin_coca_to_svg(coca_device *);
 
 /**
  * Initializate car struct
  * @param float[] -> parameters for the design
  * @param newx, newy car's position
  **/
-coca_device * oselin_coca_init(float[5], float, float);
+coca_device * oselin_coca_init(Parameters, float, float);
 
 /**
  * Initialize a machine
@@ -41,7 +28,7 @@ coca_device * oselin_coca_init(float[5], float, float);
  * @param float[] ->list of parameters chosen by the user:
  * LENGTH | HEIGHT | RADIUS | NCARS-PER-TRAILER | NFLOORS
  **/
-OselinMachine * oselin_machine_init(OselinDevice *, int , float[5]);
+OselinMachine * oselin_machine_init(Parameters, int );
 
 /**
  * Convert all the attributes to svg format

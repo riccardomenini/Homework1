@@ -15,141 +15,33 @@ using namespace std;
 
 
 //IMPLEMENTING @GIACOMOCORRADINI CAR.H LIBRARY
-
-/**
- * Redefining svg conversion for car's wheels because the author did not implemented y-coordiante changes
- * @param coca_device (=car)
- **/
-string new_coca_strg_ruote(coca_device* macch){
-    string ruo;
-    // Ruota sinistra
-    ruo = "\t<circle ";
-    ruo += "cx=\"" + to_string(macch->sx.centrox) + "\" cy=\"" + to_string(macch->sx.centroy) + "\" ";
-    ruo += "r=\"" + to_string(macch->sx.ruota) + "\" stroke=\"black\" stroke-width=\"3\" fill=\"black\"/>\n\n";
-    // Cerchione sinistra
-    ruo += "\t<circle ";
-    ruo += "cx=\"" + to_string(macch->sx.centrox) + "\" cy=\"" + to_string(macch->sx.centroy) + "\" ";
-    ruo += "r=\"" + to_string(macch->sx.cerchione) + "\" stroke=\"black\" stroke-width=\"3\" fill=\"gray\"/>\n\n";
-    // Ruota destra
-    ruo += "\t<circle ";
-    ruo += "cx=\"" + to_string(macch->dx.centrox) + "\" cy=\"" + to_string(macch->dx.centroy) + "\" ";
-    ruo += "r=\"" + to_string(macch->dx.ruota) + "\" stroke=\"black\" stroke-width=\"3\" fill=\"black\"/>\n\n";
-    // Cerchione destra
-    ruo += "\t<circle ";
-    ruo += "cx=\"" + to_string(macch->dx.centrox) + "\" cy=\"" + to_string(macch->dx.centroy) + "\" ";
-    ruo += "r=\"" + to_string(macch->dx.cerchione) + "\" stroke=\"black\" stroke-width=\"3\" fill=\"gray\"/>\n\n";
-
-    return ruo;
-}
-
-/**
- * Fill some parameters which weren't considered or modified by the author @GiacomoCorradini
- * @param coca_device (=car)
- * @param param from which newparam can be calculated
- **/
-void oselin_coca_implementation(coca_device * macch, float param[5]){
-    
-    //coca_try_carrozzeria(coca_device * macch)
-    macch->car.width = param[0];
-    macch->car.height = param[1];
-    macch->car.cx = param[3];
-    macch->car.cy = param[4] - (macch->car.height - 1) / 2;
-
-    int diametro = (int)param[2];
-    int x = 1;//(int)param[5];
-    
-    //coca_try_ruote(coca_device *macch)
-    switch (diametro)
-    {
-        case 16:
-            macch->sx.ruota = (macch->car.height - 1) / 2;
-            macch->sx.cerchione = macch->sx.ruota / 1.6;
-            macch->dx.ruota = (macch->car.height - 1) / 2;
-            macch->dx.cerchione = macch->dx.ruota / 1.6;
-            break;
-        case 17:
-            macch->sx.ruota = macch->car.height / 2;
-            macch->sx.cerchione = macch->sx.ruota / 1.6;
-            macch->dx.ruota = macch->car.height / 2;
-            macch->dx.cerchione = macch->dx.ruota / 1.6;
-            break;
-        case 18:
-            macch->sx.ruota = (macch->car.height + 1) / 2;
-            macch->sx.cerchione = macch->sx.ruota / 1.6;
-            macch->dx.ruota = (macch->car.height + 1) / 2;
-            macch->dx.cerchione = macch->dx.ruota / 1.6;
-            break;
-        
-        default:
-            break;
-    }
-
-    //coca_try_assetto(coca_device* macch)
-    switch (x){
-        case 1:
-            macch->sx.centrox = macch->car.cx + (macch->car.width / 5) - 5;
-            macch->dx.centrox = macch->car.cx + macch->car.width - (macch->car.width / 5) + 5;
-            macch->sx.centroy = macch->car.cy + macch->car.height;
-            macch->dx.centroy = macch->car.cy + macch->car.height;
-
-            break;
-        case 2:
-            macch->sx.centrox = macch->car.cx + (macch->car.width / 5);
-            macch->dx.centrox = macch->car.cx + macch->car.width - (macch->car.width / 5);
-            macch->sx.centroy = macch->car.cy + macch->car.height;
-            macch->dx.centroy = macch->car.cy + macch->car.height;
-            break;
-        case 3:
-            macch->sx.centrox = macch->car.cx + (macch->car.width / 5) +5;
-            macch->dx.centrox = macch->car.cx + macch->car.width - (macch->car.width / 5) - 5;
-            macch->sx.centroy = macch->car.cy + macch->car.height;
-            macch->dx.centroy = macch->car.cy + macch->car.height;
-            break;
-
-        default:
-            break;
-    }
-
-    coca_try_finestrini(macch);
-    coca_try_spoiler(macch);
-    coca_try_tetto(macch);
-}
-
-/**
- * Convert car to svg
- * @param coca_device (or car struct)
- **/
-string oselin_coca_to_svg(coca_device * macch){
-    
-    string svg;
-    svg += coca_strg_carrozzeria(macch);
-    svg += new_coca_strg_ruote(macch);
-    svg += coca_strg_tetto(macch);
-    svg += coca_strg_finestrini(macch);
-    svg += coca_strg_spoiler(macch);
-    return svg;
-}
-
 /**
  * Initializate car struct
  * @param float[] -> parameters for the design
  * @param newx, newy car's position
  **/
-coca_device * oselin_coca_init(float param[6], float newx, float newy){
-    coca_device * dev = new coca_device;
+coca_device * oselin_coca_init(Parameters p, float newx, float newy){
+    
 
-    float newparam [5];
-    for (int i=0;i<3;i++) newparam[i] = param[i];
-    newparam[3] = newx;
-    newparam[4] = newy;
+    parametri arrayparam;
+    arrayparam.inwidth  = p.length;
+    arrayparam.inheight = p.height;
+    arrayparam.indiam   = p.radius;
+    arrayparam.inpx     = newx;
+    arrayparam.inpy     = newy - p.radius;
+    arrayparam.inass    = 1;
 
-    oselin_coca_implementation(dev, newparam);
+    //(macch->car.height - 1) / 2;
+    coca_device * dev = coca_init_device(arrayparam);
+    coca_try_finestrini(dev);
+    coca_try_spoiler(dev);
+    coca_try_tetto(dev);
+    //oselin_coca_implementation(dev, newparam);
 
     return dev;
 }
 
-//MACHINE 
-
+//MACHINE
 /**
  * Initialize a machine
  * @param OselinDevice trailers can be copied from
@@ -157,40 +49,36 @@ coca_device * oselin_coca_init(float param[6], float newx, float newy){
  * @param float[] ->list of parameters chosen by the user:
  * LENGTH | HEIGHT | RADIUS | NCARS-PER-TRAILER | NFLOORS
  **/
-OselinMachine * oselin_machine_init(OselinDevice *dev, int ntrailers, float parameters[5]){
-
-        
-    if (!oselin_init(dev, parameters, true)){
+OselinMachine * oselin_machine_init(Parameters p, int ntrailers){
+    
+    OselinDevice *dev = oselin_init(p, true);
+    if (dev!=NULL){
         //CHECKING CONSTRAINTS AND SETTING SVG DIMENSIONS
         dev->param.svgheight = 3 * dev->param.height;
         oselin_trigonometry(dev, false);
         dev->param.svgwidth = (ntrailers +1) * dev->abslength;
         dev->offset = 0.5 * dev->abslength;
         oselin_to_svg(dev);
-
-
         // DYNAMIC ARRAY SOLUTION FOR THEN MACHINE
         OselinMachine *machine = new OselinMachine;
         machine->length = ntrailers;
-        for (int i=0; i<5; i++) machine->parameters[i] = parameters[i];
+        machine->parameters = p;
         machine->trailerarray = new OselinDevice* [ntrailers];        
 
-        machine->cararray = new coca_device* [(int)parameters[4]*(int)parameters[3]*ntrailers];
-        
+        machine->cararray = new coca_device* [p.nfloors * p.ncars * ntrailers];
         machine->svg = dev->svg;
         for (int i=0; i< ntrailers; i++){
             machine->trailerarray[i] = oselin_init_acopyof(dev);
             machine->trailerarray[i]->offset = (0.5 + i) * dev->abslength;
             oselin_to_svg(machine->trailerarray[i], false);
         }
-             
         float x,y;
-        for (int i=0; i < (int)parameters[4]; i++){
-            for (int j=0; j< (int)parameters[3]*ntrailers; j++){
-                int index = j/(int)parameters[3];      
-                y = dev->absy - 1.5*dev->downfloor.height - (i)*dev->param.height - (parameters[1]-1)/2;
-                x = machine->trailerarray[index]->offset + machine->trailerarray[index]->param.margin + (j%(int)parameters[3]) * (machine->trailerarray[index]->param.length - 2* machine->trailerarray[index]->param.margin - parameters[0]);
-                machine->cararray[i*(int)parameters[3]*ntrailers + j] = oselin_coca_init(parameters, x, y);   
+        for (int i=0; i < p.nfloors; i++){
+            for (int j=0; j< p.ncars*ntrailers; j++){
+                int index = j/p.ncars;     
+                y = dev->absy - 1.5*dev->downfloor.height - (i)*dev->param.height - (p.height-1)/2;
+                x = machine->trailerarray[index]->offset + machine->trailerarray[index]->param.margin + (j%p.ncars) * (machine->trailerarray[index]->param.length - 2* machine->trailerarray[index]->param.margin - p.length );
+                machine->cararray[i*p.ncars*ntrailers + j] = oselin_coca_init(p, x, y);   
             }
         }
         return machine;
@@ -205,27 +93,31 @@ OselinMachine * oselin_machine_init(OselinDevice *dev, int ntrailers, float para
  * @param bool for adding or not header
  **/
 string oselin_machine_to_string(OselinMachine *mach, bool with_header){
-    string svg = "";
-    if (with_header){
-    svg += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='";
-    svg += to_string(mach->trailerarray[0]->param.svgwidth) + " '  height='";
-    svg += to_string(mach->trailerarray[0]->param.svgheight) + "' >";
-    svg += "<rect  x='0.000000' y='0.000000' width='" + to_string(mach->trailerarray[0]->param.svgwidth) + "' height='" + to_string(mach->trailerarray[0]->param.svgheight) + "' style='stroke-width:0.0; stroke:' fill='white' />";
-    }
-    int len = mach->length;
-    for (int i=0;i<mach->parameters[4];i++){
-        for (int j=0;j < (int)mach->parameters[3]*len; j++ ){
-            svg += "<!--COCADEVICECAR-->\n";
-            svg += oselin_coca_to_svg(mach->cararray[i*(int)mach->parameters[3]*len + j]);
-
+    
+    if (mach!=NULL){
+        string svg = "";
+        if (with_header){
+        svg += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='";
+        svg += to_string(mach->trailerarray[0]->param.svgwidth) + " '  height='";
+        svg += to_string(mach->trailerarray[0]->param.svgheight) + "' >";
+        svg += "<rect  x='0.000000' y='0.000000' width='" + to_string(mach->trailerarray[0]->param.svgwidth) + "' height='" + to_string(mach->trailerarray[0]->param.svgheight) + "' style='stroke-width:0.0; stroke:' fill='white' />";
         }
+        int len = mach->length;
+        for (int i=0;i<mach->parameters.nfloors;i++){
+            for (int j=0;j < mach->parameters.ncars*len; j++ ){
+                svg += "<!--COCADEVICECAR-->\n";
+                svg += coca_strg_device(mach->cararray[i*mach->parameters.ncars * len + j],0,0);
+
+            }
+        }
+        for (int i=0; i< len; i++) {
+            svg += "<!--OSELINDEVICETRAILER-->\n";
+            svg += mach->trailerarray[i]->svg;
+        }
+        //mach->svg = svg;
+        return svg;
     }
-    for (int i=0; i< len; i++) {
-        svg += "<!--OSELINDEVICETRAILER-->\n";
-        svg += mach->trailerarray[i]->svg;
-    }
-    //mach->svg = svg;
-    return svg;
+    return "";
 }
 
 /**
@@ -233,16 +125,20 @@ string oselin_machine_to_string(OselinMachine *mach, bool with_header){
  * @param OselinMachine to be saved
  **/
 string oselin_machine_save(OselinMachine *mach){
-    if (mach->parameters[0] != 0){
-        oselin_machine_to_string(mach, true);
-        string filename, svgmach;
-        cout << "File name for saving (with extension): ";
-        cin >> filename;
-        ofstream MyFile(filename);
-        svgmach =  oselin_machine_to_string(mach, true);
-        MyFile << (svgmach + "\n</svg>");
-        MyFile.close();
-        return "Saved!";
+    if (mach != NULL){
+        if (mach->parameters.length != 0){
+            string filename, svgmach;
+            cout << "File name for saving (with extension): ";
+            cin >> filename;
+            ofstream MyFile(filename);
+            svgmach =  oselin_machine_to_string(mach, true);
+            if (svgmach == "") return "Something went wrong.";
+            else{
+                MyFile << (svgmach + "\n</svg>");
+                MyFile.close();
+                return "Saved!";
+            }
+        }
     }
     return "The machine looks empty...";
     
@@ -254,7 +150,7 @@ string oselin_machine_save(OselinMachine *mach){
  * @param string to be parsed
  **/
 void oselin_machine_parsing(OselinMachine *mach, string svg){
-    cout << svg << endl;
+    
     if (svg!=""){
         int pieces[mach->length][2];
         int index = 0;
