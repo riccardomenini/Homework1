@@ -8,7 +8,14 @@
 
 using namespace std;
 
-
+/**
+ * trasforma la machine in un svg
+ *
+ * @param machine contiene i parametri dell'immagine
+ * @param n contiene il numero dei carrelli
+ * @param with_measures indica se si vogliono le misue nell'immagine o no (per menini to svg)
+ * @return la stringa per l'svg
+ */
 string menini_to_svg_machine (MeniniMachine* machine, int n, int with_measures){
     string a;
     a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
@@ -33,6 +40,12 @@ string menini_to_svg_machine (MeniniMachine* machine, int n, int with_measures){
     return a;
 }
 
+/**
+ * crea la motrice basandosi sulle misure scelte per i carrelli
+ *
+ * @param machine contiene i parametri dell'immagine
+ * @return un puntatore a motrice
+ */
 MeniniDevice* menini_set_motrice_in_machine(MeniniMachine* machine){
     float r = 0;
     int control;
@@ -48,6 +61,12 @@ MeniniDevice* menini_set_motrice_in_machine(MeniniMachine* machine){
     return machine->motrice;
 }
 
+/**
+ * crea la machine
+ *
+ * @param machine contiene i parametri dell'immagine
+ * @return un puntatore a motrice
+ */
 MeniniMachine* menini_machine_create(MeniniMachine* machine){
     machine->arr = new OselinDevice* [machine->n];   // notare asterisco dopo MyDevice
     machine->arr[0] = new OselinDevice;
@@ -61,7 +80,8 @@ MeniniMachine* menini_machine_create(MeniniMachine* machine){
     }
     menini_set_motrice_in_machine (machine);
     machine->motrice->ruotasx.y = machine->arr[0]->frontwheel.y;//aggiusto ruote
-    machine->motrice->ruotadx.y = machine->arr[0]->frontwheel.y;//aggiusto ruote                 
+    machine->motrice->ruotadx.y = machine->arr[0]->frontwheel.y;//aggiusto ruote     
+    return machine;            
 }
 
 string questions[] = {"SVG width: ", "SVG height: ","Car lenght: ","Car height: ", "Wheel radius [16,17,18]: ","Cars-per-trailer [1,2]: ","Number of floors [1,2]: "};
@@ -69,7 +89,9 @@ string questions[] = {"SVG width: ", "SVG height: ","Car lenght: ","Car height: 
 
 
 /**
- * Create OselinDevice from scratch. It can work with graphical menu or inline commands
+ * Create OselinDevice from scratch. It can work with graphical menu 
+ * @param dev a Oselin device
+ * @return a string
  **/
 string create(OselinDevice *dev){
 
