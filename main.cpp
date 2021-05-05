@@ -136,7 +136,7 @@ int main() {
                     cout << "Inserire file da cui si vuole leggere ";
                     cin >> stringa;
                     testoletto = menini_read_file(stringa);
-                    menini_parse_machine (testoletto);
+                    machine = menini_parse_machine (testoletto);
                     //device = menini_parse(testoletto);
                     break;
                 case 'c'://creazione
