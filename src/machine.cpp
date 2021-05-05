@@ -17,7 +17,6 @@ using namespace std;
  * @return la stringa per l'svg
  */
 string menini_to_svg_machine (MeniniMachine* machine, int n, int with_measures){
-    cout << machine->arr[0]->abslength << endl;
     string a;
     a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
     a += "<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='";
@@ -159,27 +158,44 @@ MeniniMachine* menini_parse_machine (string a){
     size_t numerocarrelli = a.find("<!--") + 4;
     size_t numerocarrellifine = a.find("-->",numerocarrelli);
     int n = stof(a.substr(numerocarrelli, numerocarrellifine - numerocarrelli));
-    //cout << "n = " << n << endl;
 
     MeniniMachine* machine = new MeniniMachine;
     machine->motrice = new MeniniDevice;
     machine->arr = new OselinDevice* [n];
     machine->arr[0] = new OselinDevice;
-    //cout << motrice << endl;
     machine->motrice = menini_parse(motrice);
-    //cout << "debug:" << endl;
     oselin_parsing(machine->arr[0], carrello);
     machine->n = n;
     for (int count = 1; count < machine->n; count++){
         machine->arr[count] = new OselinDevice;
         machine->arr[count] = oselin_init_acopyof(machine->arr[0]);
         machine->arr[count]->offset = (count) * machine->arr[0]->abslength + machine->motrice->margineds + machine->arr[0]->downfloor.width + DOWNOFFSET;
-        //cout << machine->arr[1]->downfloor.y << endl;
 
     }
-    
-
     return machine;
 
+
+}
+
+bool menini_are_equal(MeniniMachine* machine1, MeniniMachine* machine2){
+    if (machine1 == NULL || machine2 == NULL){
+        return true;
+    }
+    /*int m = 1;
+    if (machine1->motrice->pianale.w == machine2->motrice->pianale.w) m = 0;
+    if (machine1->motrice->pianale.h == machine2->motrice->pianale.h) m = 0;
+    if (machine1->motrice->ruotasx.x == machine2->motrice->ruotasx.x) m = 0;
+    if (machine1->motrice->ruotadx.x == machine2->motrice->ruotadx.x) m = 0;
+    if (machine1->motrice->ruotasx.r == machine2->motrice->ruotasx.r) m = 0;
+
+    int c = 1;*/
+
+    string str1 = menini_to_svg_machine(machine1, machine1->n, false);
+    string str2 = menini_to_svg_machine(machine2, machine2->n, false);
+
+    if (str1.compare(str2) == 0){
+        return true;
+    }
+    return false;
 
 }
