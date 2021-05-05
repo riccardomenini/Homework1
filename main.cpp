@@ -133,10 +133,11 @@ int main() {
                 switch (a)
                 {
                 case 'l': //caricamento
-                    /*cout << "Inserire file da cui si vuole leggere ";
+                    cout << "Inserire file da cui si vuole leggere ";
                     cin >> stringa;
                     testoletto = menini_read_file(stringa);
-                    device = menini_parse(testoletto);*/
+                    menini_parse_machine (testoletto);
+                    //device = menini_parse(testoletto);
                     break;
                 case 'c'://creazione
                     cout << "Carrelli: \n";

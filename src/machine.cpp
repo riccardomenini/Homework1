@@ -31,9 +31,16 @@ string menini_to_svg_machine (MeniniMachine* machine, int n, int with_measures){
 
     a += menini_to_svg(machine->motrice,0);
 
+    a += "<!--" + to_string(n) + "-->\n";
+
+    a += "<!-- <?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='" + to_string(machine->arr[0]->param.svgheight) + " '  height='" + to_string(machine->arr[0]->param.svgheight) + "' >\n<g>\n-->";
+
     for (int count = 0; count < n; count++){
         oselin_to_svg(machine->arr[count], false, false);
         a += machine->arr[count]->svg;
+        if (count == 0){
+            a += "\n<!-- FINEPRIMOCARRELLO -->";
+        }
     }
     
     a += "</g>\n</svg>\n";
@@ -123,4 +130,46 @@ string create(OselinDevice *dev){
         return "Created successfully";
     }
     return "Something went wrong";
+}
+
+MeniniMachine* menini_parse_machine (string a){
+    if (a == ""){
+        return NULL; 
+    }
+    string inizio;
+    string motrice;
+    string carrello;
+    string fine;
+    size_t intestazione = a.find("<g>", 8) + 2;
+    inizio = a.substr(0, intestazione);
+    fine = "</g>\n</svg>";
+
+    motrice = inizio;
+    motrice += a.substr(intestazione, a.find("<!--", 0)-intestazione); 
+    motrice += fine;
+
+    //carrello = inizio;
+    intestazione = a.find("<?xml", 10);
+    size_t fineintestazione = a.find("-->", intestazione);
+    carrello += a.substr(intestazione, fineintestazione-intestazione);
+    carrello += a.substr(fineintestazione + 4, (a.find("<!-- FINEPRIMOCARRELLO -->", 0)) - (fineintestazione + 4));
+    carrello += fine;
+
+    size_t numerocarrelli = a.find("<!--") + 4;
+    size_t numerocarrellifine = a.find("-->",numerocarrelli);
+    int n = stof(a.substr(numerocarrelli, numerocarrellifine - numerocarrelli));
+    cout << "n = " << n << endl;
+
+    MeniniMachine* machine = new MeniniMachine;
+    machine->motrice = new MeniniDevice;
+    machine->arr = new OselinDevice* [n];
+    machine->arr[0] = new OselinDevice;
+    machine->motrice = menini_parse(motrice);
+    cout << "debug" << endl;
+    oselin_parsing(machine->arr[0], carrello);
+    machine->n = n;
+
+    return machine;
+
+
 }

@@ -22,4 +22,6 @@ MeniniMachine* menini_machine_create(MeniniMachine*);
 
 string create(OselinDevice*);
 
+MeniniMachine* menini_parse_machine (string);
+
 #endif 
