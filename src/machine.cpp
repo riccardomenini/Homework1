@@ -17,6 +17,7 @@ using namespace std;
  * @return la stringa per l'svg
  */
 string menini_to_svg_machine (MeniniMachine* machine, int n, int with_measures){
+    cout << machine->arr[0]->abslength << endl;
     string a;
     a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
     a += "<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='";
@@ -158,16 +159,25 @@ MeniniMachine* menini_parse_machine (string a){
     size_t numerocarrelli = a.find("<!--") + 4;
     size_t numerocarrellifine = a.find("-->",numerocarrelli);
     int n = stof(a.substr(numerocarrelli, numerocarrellifine - numerocarrelli));
-    cout << "n = " << n << endl;
+    //cout << "n = " << n << endl;
 
     MeniniMachine* machine = new MeniniMachine;
     machine->motrice = new MeniniDevice;
     machine->arr = new OselinDevice* [n];
     machine->arr[0] = new OselinDevice;
+    //cout << motrice << endl;
     machine->motrice = menini_parse(motrice);
-    cout << "debug" << endl;
+    //cout << "debug:" << endl;
     oselin_parsing(machine->arr[0], carrello);
     machine->n = n;
+    for (int count = 1; count < machine->n; count++){
+        machine->arr[count] = new OselinDevice;
+        machine->arr[count] = oselin_init_acopyof(machine->arr[0]);
+        machine->arr[count]->offset = (count) * machine->arr[0]->abslength + machine->motrice->margineds + machine->arr[0]->downfloor.width + DOWNOFFSET;
+        //cout << machine->arr[1]->downfloor.y << endl;
+
+    }
+    
 
     return machine;
 

@@ -523,16 +523,13 @@ void menini_write_file(string stringa, string nomefile){
   */
 float menini_cerca(string stringa, string cercata, int & partenza, string fine){
     string numero;
-    //cout << "partenza in cerca= " << partenza;
     size_t found = stringa.find(cercata, partenza);
     if (found != string::npos)
         found += cercata.length();
         size_t found1 = stringa.find(fine, found+1);
         for (found; found < found1; found++){
-        //cout << "ciclo" << stringa[found] << "\n";
         numero += stringa[found];
         }
-    //cout << "numero trovato: " << numero << "\n";
     partenza = found;
     return stof(numero);
 }
@@ -550,9 +547,8 @@ float menini_cerca(string stringa, string cercata, int & partenza, string fine){
 
     if (stringa!=""){
         //width e height svg
-        device->w = menini_cerca(stringa, "width='", partenza, "m");
-        device->h = menini_cerca(stringa, "height='", partenza, "m");
-        //cout << device->w << " " << device->h;
+        device->w = menini_cerca(stringa, "width='", partenza, "'");
+        device->h = menini_cerca(stringa, "height='", partenza, "'");
 
         //cabina
         device->cabina.w = menini_cerca(stringa, "width='", partenza, "'");
@@ -582,7 +578,6 @@ float menini_cerca(string stringa, string cercata, int & partenza, string fine){
         device->ruotadx.x = menini_cerca(stringa, "cx='", partenza, "'");
         device->ruotadx.y = menini_cerca(stringa, "cy='", partenza, "'");
         device->ruotadx.r = menini_cerca(stringa, "rx='", partenza, "'");
-        //cout << device->ruotadx.x << " " << device->ruotadx.y << " " << device->ruotadx.r << " \n";
     }else{
         return NULL;
     }
