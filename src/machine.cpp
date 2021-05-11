@@ -16,7 +16,7 @@ using namespace std;
  * @param with_measures indica se si vogliono le misue nell'immagine o no (per menini to svg)
  * @return la stringa per l'svg
  */
-string menini_to_svg_machine (MeniniMachine* machine, int n, int with_measures){
+string menini_to_svg_machine (MeniniMachine* machine, int n){
     if (machine != NULL){
         string a;
         a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
@@ -200,8 +200,8 @@ bool menini_are_equal(MeniniMachine* machine1, MeniniMachine* machine2){
 
     int c = 1;*/
 
-    string str1 = menini_to_svg_machine(machine1, machine1->n, false);
-    string str2 = menini_to_svg_machine(machine2, machine2->n, false);
+    string str1 = menini_to_svg_machine(machine1, machine1->n);
+    string str2 = menini_to_svg_machine(machine2, machine2->n);
 
     if (str1.compare(str2) == 0){
         return true;

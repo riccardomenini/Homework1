@@ -153,7 +153,7 @@ int main() {
                     cin >> testoletto;
                     int risposta;
                     stringa = "";
-                    stringa = menini_to_svg_machine (machine,machine->n,0);
+                    stringa = menini_to_svg_machine (machine,machine->n);
                     menini_write_file(stringa, testoletto);
                     break;
                 default:

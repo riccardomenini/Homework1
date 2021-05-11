@@ -14,7 +14,7 @@ struct MeniniMachine{
 
 //OselinDevice* menini_init_device_in_machine(int);
 
-string menini_to_svg_machine (MeniniMachine*, int, int);
+string menini_to_svg_machine (MeniniMachine*, int);
 
 MeniniDevice* menini_set_motrice_in_machine(MeniniMachine*);
 
