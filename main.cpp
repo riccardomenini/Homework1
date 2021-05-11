@@ -71,6 +71,8 @@ int main() {
     string testoletto;
     MeniniDevice *device = menini_init();
     MeniniMachine *machine = new MeniniMachine;
+    //machine->n = 0;
+    bool m = false;
     machine->motrice = menini_init();
     while (r != 'q'){
         switch (r)
@@ -144,6 +146,7 @@ int main() {
                     cout << "Quanti carrelli si desidera inserire? \n";
                     cin >> machine->n;
                     menini_machine_create(machine);
+                    m =true;
                     break;
                 case 's'://salvataggio
                     cout << "Inserire nome file su cui salvare l'svg ";
@@ -168,8 +171,6 @@ int main() {
     cin >> r;
     cout << "\n\n";
     }
-    delete [] device;
-    delete [] machine->arr;
-    delete [] machine;
+    menini_delete(machine, device, m);
     return 0;
 }

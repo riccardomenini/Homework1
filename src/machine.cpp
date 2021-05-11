@@ -17,34 +17,39 @@ using namespace std;
  * @return la stringa per l'svg
  */
 string menini_to_svg_machine (MeniniMachine* machine, int n, int with_measures){
-    string a;
-    a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
-    a += "<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='";
-    a += to_string((machine->arr[0]->abslength + 50*2*n + machine->motrice->h)*2);
-    a += "' height='";
-    a += to_string((machine->arr[0]->param.height)*2);
-    a += "' viewBox='0 0 ";
-    a += to_string((machine->arr[0]->abslength + 50*2*n + machine->motrice->h)*2);
-    a += " ";
-    a += to_string((machine->arr[0]->param.height)*2);
-    a += "'>\n<g>\n";
+    if (machine != NULL){
+        string a;
+        a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
+        a += "<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='";
+        a += to_string((machine->arr[0]->abslength + 50*2*n + machine->motrice->h)*2);
+        a += "' height='";
+        a += to_string((machine->arr[0]->param.height)*2);
+        a += "' viewBox='0 0 ";
+        a += to_string((machine->arr[0]->abslength + 50*2*n + machine->motrice->h)*2);
+        a += " ";
+        a += to_string((machine->arr[0]->param.height)*2);
+        a += "'>\n<g>\n";
 
-    a += menini_to_svg(machine->motrice,0);
+        a += menini_to_svg(machine->motrice,0);
 
-    a += "<!--" + to_string(n) + "-->\n";
+        a += "<!--" + to_string(n) + "-->\n";
 
-    a += "<!-- <?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='" + to_string(machine->arr[0]->param.svgheight) + " '  height='" + to_string(machine->arr[0]->param.svgheight) + "' >\n<g>\n-->";
+        a += "<!-- <?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='" + to_string(machine->arr[0]->param.svgheight) + " '  height='" + to_string(machine->arr[0]->param.svgheight) + "' >\n<g>\n-->";
 
-    for (int count = 0; count < n; count++){
-        oselin_to_svg(machine->arr[count], false, false);
-        a += machine->arr[count]->svg;
-        if (count == 0){
-            a += "\n<!-- FINEPRIMOCARRELLO -->";
+        for (int count = 0; count < n; count++){
+            oselin_to_svg(machine->arr[count], false, false);
+            a += machine->arr[count]->svg;
+            if (count == 0){
+                a += "\n<!-- FINEPRIMOCARRELLO -->";
+            }
         }
+        
+        a += "</g>\n</svg>\n";
+        return a;
+    }else{
+        return "ERRORE";
     }
     
-    a += "</g>\n</svg>\n";
-    return a;
 }
 
 /**
@@ -56,16 +61,21 @@ string menini_to_svg_machine (MeniniMachine* machine, int n, int with_measures){
 MeniniDevice* menini_set_motrice_in_machine(MeniniMachine* machine){
     float r = 0;
     int control;
-    machine->motrice->pianale.w = machine->arr[0]->downfloor.width; //Non può fallire in quanto non ho definito nessun altro parametro 
-    machine->motrice->pianale.h = (machine->arr[0]->param.height + machine->arr[0]->downfloor.height) / 5; //Non può fallire in quanto non ho definito nessun altro parametro
-    machine->motrice->ruotasx.x = machine->motrice->pianale.w / 5;
-    machine->motrice->ruotadx.x = 4 * machine->motrice->pianale.w / 5; 
-    machine->motrice->ruotasx.x += machine->motrice->margineds;
-    machine->motrice->ruotadx.x += machine->motrice->margineds;
-    r = machine->arr[0]->downfloor.height / 40 * 2 * machine->arr[0]->param.radius;
-    control = menini_set_raggi(machine->motrice,r);
-    menini_reset(machine->motrice);
-    return machine->motrice;
+    if (machine != NULL){
+        machine->motrice->pianale.w = machine->arr[0]->downfloor.width; //Non può fallire in quanto non ho definito nessun altro parametro 
+        machine->motrice->pianale.h = (machine->arr[0]->param.height + machine->arr[0]->downfloor.height) / 5; //Non può fallire in quanto non ho definito nessun altro parametro
+        machine->motrice->ruotasx.x = machine->motrice->pianale.w / 5;
+        machine->motrice->ruotadx.x = 4 * machine->motrice->pianale.w / 5; 
+        machine->motrice->ruotasx.x += machine->motrice->margineds;
+        machine->motrice->ruotadx.x += machine->motrice->margineds;
+        r = machine->arr[0]->downfloor.height / 40 * 2 * machine->arr[0]->param.radius;
+        control = menini_set_raggi(machine->motrice,r);
+        menini_reset(machine->motrice);
+        return machine->motrice;
+    }else{
+        return NULL;
+    }
+    
 }
 
 /**
@@ -198,4 +208,17 @@ bool menini_are_equal(MeniniMachine* machine1, MeniniMachine* machine2){
     }
     return false;
 
+}
+
+void menini_delete (MeniniMachine * machine, MeniniDevice * device, bool m){
+    
+    delete [] device;
+    delete [] machine->motrice;
+    if (m){
+        /*for (int count = 1; count < machine->n; count++){
+            delete [] machine->arr[count];
+        }*/
+        delete [] machine->arr;
+    }
+    delete [] machine;
 }
