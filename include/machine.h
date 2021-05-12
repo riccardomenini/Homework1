@@ -24,6 +24,8 @@ string create(OselinDevice*);
 
 MeniniMachine* menini_parse_machine (string);
 
+bool menini_are_equal(MeniniMachine* , MeniniMachine* );
+
 void menini_delete (MeniniMachine *, MeniniDevice *, bool);
 
 #endif 

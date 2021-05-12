@@ -21,11 +21,11 @@ string menini_to_svg_machine (MeniniMachine* machine, int n){
         string a;
         a += "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n";
         a += "<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='";
-        a += to_string((machine->arr[0]->abslength + 50*2*n + machine->motrice->h)*2);
+        a += to_string((machine->arr[0]->abslength * n + 50*2*n + machine->motrice->w));
         a += "' height='";
         a += to_string((machine->arr[0]->param.height)*2);
         a += "' viewBox='0 0 ";
-        a += to_string((machine->arr[0]->abslength + 50*2*n + machine->motrice->h)*2);
+        a += to_string((machine->arr[0]->abslength * n + 50*2*n + machine->motrice->w));
         a += " ";
         a += to_string((machine->arr[0]->param.height)*2);
         a += "'>\n<g>\n";
@@ -60,16 +60,17 @@ string menini_to_svg_machine (MeniniMachine* machine, int n){
  */
 MeniniDevice* menini_set_motrice_in_machine(MeniniMachine* machine){
     float r = 0;
-    int control;
     if (machine != NULL){
         machine->motrice->pianale.w = machine->arr[0]->downfloor.width; //Non può fallire in quanto non ho definito nessun altro parametro 
         machine->motrice->pianale.h = (machine->arr[0]->param.height + machine->arr[0]->downfloor.height) / 5; //Non può fallire in quanto non ho definito nessun altro parametro
-        machine->motrice->ruotasx.x = machine->motrice->pianale.w / 5;
-        machine->motrice->ruotadx.x = 4 * machine->motrice->pianale.w / 5; 
+        menini_set_ruotasx (machine->motrice, machine->motrice->pianale.w / 5 + machine->motrice->margineds);
+        menini_set_ruotadx (machine->motrice, 4 * machine->motrice->pianale.w / 5 + machine->motrice->margineds);
+        /*machine->motrice->ruotasx.x = machine->motrice->pianale.w / 5 + machine->motrice->margineds;
+        machine->motrice->ruotadx.x = 4 * machine->motrice->pianale.w / 5 + machine->motrice->margineds; 
         machine->motrice->ruotasx.x += machine->motrice->margineds;
-        machine->motrice->ruotadx.x += machine->motrice->margineds;
+        machine->motrice->ruotadx.x += machine->motrice->margineds;*/
         r = machine->arr[0]->downfloor.height / 40 * 2 * machine->arr[0]->param.radius;
-        control = menini_set_raggi(machine->motrice,r);
+        menini_set_raggi(machine->motrice,r);
         menini_reset(machine->motrice);
         return machine->motrice;
     }else{
@@ -175,6 +176,7 @@ MeniniMachine* menini_parse_machine (string a){
     machine->arr[0] = new OselinDevice;
     machine->motrice = menini_parse(motrice);
     oselin_parsing(machine->arr[0], carrello);
+    machine->arr[0]->offset = (0) * machine->arr[0]->abslength + machine->motrice->margineds + machine->arr[0]->downfloor.width + DOWNOFFSET;
     machine->n = n;
     for (int count = 1; count < machine->n; count++){
         machine->arr[count] = new OselinDevice;
@@ -188,37 +190,36 @@ MeniniMachine* menini_parse_machine (string a){
 }
 
 bool menini_are_equal(MeniniMachine* machine1, MeniniMachine* machine2){
-    if (machine1 == NULL || machine2 == NULL){
+    if (machine1 == NULL && machine2 == NULL){
         return true;
+    }else if (machine1 == NULL && machine2 != NULL){
+        return false;
+    }else if (machine1 != NULL && machine2 == NULL){
+        return false;
+    }else{
+        string str1 = menini_to_svg_machine(machine1, machine1->n);
+        string str2 = menini_to_svg_machine(machine2, machine2->n);
+
+        if (str1.compare(str2) == 0){
+            return true;
+        }
+        return false;
     }
-    /*int m = 1;
-    if (machine1->motrice->pianale.w == machine2->motrice->pianale.w) m = 0;
-    if (machine1->motrice->pianale.h == machine2->motrice->pianale.h) m = 0;
-    if (machine1->motrice->ruotasx.x == machine2->motrice->ruotasx.x) m = 0;
-    if (machine1->motrice->ruotadx.x == machine2->motrice->ruotadx.x) m = 0;
-    if (machine1->motrice->ruotasx.r == machine2->motrice->ruotasx.r) m = 0;
-
-    int c = 1;*/
-
-    string str1 = menini_to_svg_machine(machine1, machine1->n);
-    string str2 = menini_to_svg_machine(machine2, machine2->n);
-
-    if (str1.compare(str2) == 0){
-        return true;
-    }
-    return false;
 
 }
 
 void menini_delete (MeniniMachine * machine, MeniniDevice * device, bool m){
-    
-    delete [] device;
-    delete [] machine->motrice;
-    if (m){
-        /*for (int count = 1; count < machine->n; count++){
-            delete [] machine->arr[count];
-        }*/
-        delete [] machine->arr;
+    if (device != NULL){
+        delete [] device;
     }
-    delete [] machine;
+    if (machine != NULL){
+        delete [] machine->motrice;
+        if (m){
+            /*for (int count = 1; count < machine->n; count++){
+                delete [] machine->arr[count];
+            }*/
+            delete [] machine->arr;
+        }
+        delete [] machine;
+    }
 }
