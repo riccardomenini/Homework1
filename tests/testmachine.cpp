@@ -94,9 +94,11 @@ TEST_CASE("menini_set_motrice_in_machine dovrebbe tornare NULL se machine == NUL
 
 TEST_CASE("menini_parse_machine dovrebbe tornare la struttura dati riempita per la motrice", "[machine]") {
 
+    MeniniMachine* machine = new MeniniMachine;
+
     string a = "<?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' style='background-color:white' width='2334.000000' height='400.000000' viewBox='0 0 2334.000000 400.000000'>\n<g>\n<rect style='fill:#ff7f2a;fill-rule:evenodd;stroke-width:0.176061' id='rect10' width='150.000000' height='184.000000' x='30.000000' y='30.000000' />\n<rect style='fill:#00ffff;stroke-width:0.310366' id='rect12' width='75.000000' height='92.000000' x='30.000000' y='66.800003' />\n<rect style='fill:#ff7f2a;stroke-width:0.264583' id='rect95' width='450.000000' height='46.000000' x='30.000000' y='214.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14' cx='120.000000' cy='253.250000' rx='27.000000' ry='27.000000' />\n<ellipse style='fill:#4d4d4d;stroke-width:0.23472' id='path14-7' cx='390.000000' cy='253.250000' rx='27.000000' ry='27.000000' />\n<!--2-->\n<!-- <?xml version='1.0' encoding='UTF-8' standalone='no'?>\n<svg xmlns='http://www.w3.org/2000/svg' width='600.000000 '  height='600.000000' >\n<g>\n-->\n<!--#1-->\n\n<rect  x='480.000000' y='240.000000' width='50.000000' height='10.000000' style='stroke-width:0.500000; stroke:black' fill='#990000' />\n<circle cx='480.000000' cy='245.000000' r='6.000000' stroke='black' stroke-width='1.800000' fill='white' />\n<!--#2-->\n\n<rect  x='980.000000' y='240.000000' width='50.000000' height='10.000000' style='stroke-width:0.500000; stroke:black' fill='#990000' />\n<circle cx='1030.000000' cy='245.000000' r='6.000000' stroke='black' stroke-width='1.800000' fill='white' />\n<!--#3-->\n\n<rect  x='530.000000' y='230.000000' width='450.000000' height='30.000000' style='stroke-width:1.500000; stroke:black' fill='#990000' />\n<!--#4-->\n\n<circle cx='942.500000' cy='253.250000' r='27.000000' stroke='black' stroke-width='2.700000' fill='black' />\n<circle cx='942.500000' cy='253.250000' r='20.250000' stroke='black' stroke-width='2.700000' fill= 'gray' />\n<!--#5-->\n\n<circle cx='567.500000' cy='253.250000' r='27.000000' stroke='black' stroke-width='2.700000' fill='black' />\n<circle cx='567.500000' cy='253.250000' r='20.250000' stroke='black' stroke-width='2.700000' fill= 'gray' />\n<!--#6-->\n\n<rect  x='530.000000' y='30.000000' width='450.000000' height='30.000000' style='stroke-width:1.500000; stroke:black' fill='#990000' />\n<!--#7-->\n\n<g transform='rotate(20.000000,690.000000,145.000000)'>\n<rect  x='680.000000' y='30.000000' width='20.000000' height='230.000000' style='stroke-width:1.000000; stroke:black' fill='#990000' />\n<circle cx='690.000000' cy='250.000000' r='6.666667' stroke='black' stroke-width='2.700000' fill='white' />\n<circle cx='690.000000' cy='40.000000' r='6.666667' stroke='black' stroke-width='2.700000' fill='white' />\n</g>\n<!--#8-->\n\n<g transform='rotate(20.000000,840.000000,145.000000)'>\n<rect  x='830.000000' y='30.000000' width='20.000000' height='230.000000' style='stroke-width:1.000000; stroke:black' fill='#990000' />\n<circle cx='840.000000' cy='250.000000' r='6.666667' stroke='black' stroke-width='2.700000' fill='white' />\n<circle cx='840.000000' cy='40.000000' r='6.666667' stroke='black' stroke-width='2.700000' fill='white' />\n</g>\n<!-- FINEPRIMOCARRELLO -->\n<!--#1-->\n\n<rect  x='1030.000000' y='240.000000' width='50.000000' height='10.000000' style='stroke-width:0.500000; stroke:black' fill='#990000' />\n<circle cx='1030.000000' cy='245.000000' r='6.000000' stroke='black' stroke-width='1.800000' fill='white' />\n<!--#2-->\n\n<rect  x='1530.000000' y='240.000000' width='50.000000' height='10.000000' style='stroke-width:0.500000; stroke:black' fill='#990000' />\n<circle cx='1580.000000' cy='245.000000' r='6.000000' stroke='black' stroke-width='1.800000' fill='white' />\n<!--#3-->\n\n<rect  x='1080.000000' y='230.000000' width='450.000000' height='30.000000' style='stroke-width:1.500000; stroke:black' fill='#990000' />\n<!--#4-->\n\n<circle cx='1492.500000' cy='253.250000' r='27.000000' stroke='black' stroke-width='2.700000' fill='black' />\n<circle cx='1492.500000' cy='253.250000' r='20.250000' stroke='black' stroke-width='2.700000' fill= 'gray' />\n<!--#5-->\n\n<circle cx='1117.500000' cy='253.250000' r='27.000000' stroke='black' stroke-width='2.700000' fill='black' />\n<circle cx='1117.500000' cy='253.250000' r='20.250000' stroke='black' stroke-width='2.700000' fill= 'gray' />\n<!--#6-->\n\n<rect  x='1080.000000' y='30.000000' width='450.000000' height='30.000000' style='stroke-width:1.500000; stroke:black' fill='#990000' />\n<!--#7-->\n\n<g transform='rotate(20.000000,1240.000000,145.000000)'>\n<rect  x='1230.000000' y='30.000000' width='20.000000' height='230.000000' style='stroke-width:1.000000; stroke:black' fill='#990000' />\n<circle cx='1240.000000' cy='250.000000' r='6.666667' stroke='black' stroke-width='2.700000' fill='white' />\n<circle cx='1240.000000' cy='40.000000' r='6.666667' stroke='black' stroke-width='2.700000' fill='white' />\n</g>\n<!--#8-->\n\n<g transform='rotate(20.000000,1390.000000,145.000000)'>\n<rect  x='1380.000000' y='30.000000' width='20.000000' height='230.000000' style='stroke-width:1.000000; stroke:black' fill='#990000' />\n<circle cx='1390.000000' cy='250.000000' r='6.666667' stroke='black' stroke-width='2.700000' fill='white' />\n<circle cx='1390.000000' cy='40.000000' r='6.666667' stroke='black' stroke-width='2.700000' fill='white' />\n</g></g>\n</svg>\n";
 
-    MeniniMachine* machine = menini_parse_machine (a);
+    machine = menini_parse_machine (a);
 
     REQUIRE( machine->motrice->pianale.w == (float)450);
     REQUIRE( machine->motrice->pianale.h == (float)46); 
@@ -231,4 +233,44 @@ TEST_CASE("menini_are_equal dovrebbe tornare false se una è NULL e l'altra no",
     REQUIRE(menini_are_equal(machine1, NULL) == false);
     REQUIRE(menini_are_equal(NULL, machine1) == false);
 }
+
+TEST_CASE("oselin_init_acopyof dovrebbe ritornare una copia del device", "[machine]") {
+
+    //MeniniMachine* machine = new MeniniMachine;
+    //machine->motrice = new MeniniDevice;
+    //machine->n = 2;
+    //OselinDevice* dev = new OselinDevice* [machine->n];   // notare asterisco dopo MyDevice
+    OselinDevice* dev = new OselinDevice;
+
+    Parameters p;
+    p.svgwidth = 800;
+    p.svgheight = 600;    
+    p.length    = 100;
+    p.height    = 50;
+    p.radius    = 18;
+    p.ncars     = 2;
+    p.nfloors   = 2;
+    (*dev) = (*oselin_init(p));
+    if (dev != NULL){
+        oselin_trigonometry(dev,false);
+    }
+
+    dev->offset = 30 + dev->downfloor.width + DOWNOFFSET;
+    REQUIRE (oselin_to_svg(dev) == oselin_to_svg(oselin_init_acopyof(dev)));
+
+
+
+}
+
+TEST_CASE("oselin_init_acopyof dovrebbe ritornare una copia del device in caso di dev = NULL", "[machine]") {
+
+    OselinDevice* dev = NULL;
+
+    REQUIRE (NULL == oselin_init_acopyof(dev));
+
+
+
+}
+
+
 //Manca menini_machine_create

@@ -134,7 +134,13 @@ int trigfloors(OselinDevice *dev,  string m){
         f->height = dev->param.length/15;
         f->stroke = f->height/20;
         f->x = 0;
+
+
+        //MODIFICATO _______________________________________________________________________________________________________________________
         f->y = (!mode)*dev->param.height + 30;//dev->param.svgheight - (dev->param.svgheight - dev->param.height)/2 - mode*dev->param.height;
+        //MODIFICATO _______________________________________________________________________________________________________________________
+        
+        
         return 0;
     }
     else return 1;
@@ -699,7 +705,13 @@ Oselin_Axis parsingaxis(string svg){
  **/
 void oselin_parsing(OselinDevice * device, string svg){
     if (svg!=""){
-        int pieces[7][2];
+
+        
+        //MODIFICATO _______________________________________________________________________________________________________________________
+        int pieces[8][2];
+        //MODIFICATO _______________________________________________________________________________________________________________________
+
+        
         for (int i=1;i<9;i++){
             int index = svg.find(checkpoint(i));
             int len = svg.find(checkpoint(i+1)) - index;

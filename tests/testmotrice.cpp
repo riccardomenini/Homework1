@@ -61,10 +61,12 @@ TEST_CASE("menini_set_pianale_w dovrebbe ritornare 0 se i w pianale rispetta i l
     MeniniDevice* device = menini_init();
 
     device->ruotasx.x = 30;
+    device->ruotadx.x = 19;
     float new_w = 20;
 
     REQUIRE( menini_set_pianale_w(device, new_w) == 1);
 
+    device->ruotadx.x = 80;
     new_w = 90;
 
     REQUIRE( menini_set_pianale_w(device, new_w) == 0);
@@ -585,7 +587,7 @@ TEST_CASE("menini_reset dovrebbe settare null se do ingresso null", "[motrice]")
 /*TEST_CASE("menini_cerca dovrebbe ritornare la posizione della stringa cercata", "[motrice]") {
 
     int *partenza = 0;
-
+    
     REQUIRE( menini_cerca("ciao", "i", partenza, "o") == (float)1);   
 }*/
 
@@ -600,5 +602,3 @@ TEST_CASE("menini_reset dovrebbe settare null se do ingresso null", "[motrice]")
 //menini_to_svg ha solo un test
 //menini_read_file ha solo un test
 //menini_write_file ha solo un test
-
-
