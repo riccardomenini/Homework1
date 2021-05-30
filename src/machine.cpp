@@ -175,7 +175,7 @@ MeniniMachine* menini_parse_machine (string a){
     machine->arr = new OselinDevice* [n];
     machine->arr[0] = new OselinDevice;
     machine->motrice = menini_parse(motrice);
-    oselin_parsing(machine->arr[0], carrello);
+    machine->arr[0] = oselin_parsing(carrello , 0);
     machine->arr[0]->offset = (0) * machine->arr[0]->abslength + machine->motrice->margineds + machine->arr[0]->downfloor.width + DOWNOFFSET;
     machine->n = n;
     for (int count = 1; count < machine->n; count++){

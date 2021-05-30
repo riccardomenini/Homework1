@@ -528,7 +528,7 @@ float menini_cerca(string stringa, string cercata, int & partenza, string fine){
         found += cercata.length();
         size_t found1 = stringa.find(fine, found+1);
         for (found; found < found1; found++){
-        numero += stringa[found];
+            numero += stringa[found];
         }
     partenza = found;
     return stof(numero);

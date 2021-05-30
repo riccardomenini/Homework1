@@ -134,13 +134,9 @@ int trigfloors(OselinDevice *dev,  string m){
         f->height = dev->param.length/15;
         f->stroke = f->height/20;
         f->x = 0;
-
-
         //MODIFICATO _______________________________________________________________________________________________________________________
         f->y = (!mode)*dev->param.height + 30;//dev->param.svgheight - (dev->param.svgheight - dev->param.height)/2 - mode*dev->param.height;
         //MODIFICATO _______________________________________________________________________________________________________________________
-        
-        
         return 0;
     }
     else return 1;
@@ -668,7 +664,6 @@ Oselin_Joint parsingjoint(string svg){
 
     j.body = parsingfloor(rect,0);
     j.head = parsingwheel(circle,0);
-    
     return j;
 }
 
@@ -703,23 +698,21 @@ Oselin_Axis parsingaxis(string svg){
  * @param string svg
  * @param device to be filled
  **/
-void oselin_parsing(OselinDevice * device, string svg){
+OselinDevice* oselin_parsing(string svg, int svgoverride){
+    OselinDevice *device = new OselinDevice;
     if (svg!=""){
-
-        
-        //MODIFICATO _______________________________________________________________________________________________________________________
         int pieces[8][2];
-        //MODIFICATO _______________________________________________________________________________________________________________________
-
-        
         for (int i=1;i<9;i++){
             int index = svg.find(checkpoint(i));
             int len = svg.find(checkpoint(i+1)) - index;
             pieces[i-1][0] = index+11;
             pieces[i-1][1] = len-11;
         }
-        device->param.svgwidth = stof(buffering(svg.substr(0,pieces[0][0]),"width='",'\''));
-        device->param.svgheight = stof(buffering(svg.substr(0,pieces[0][0]),"height='",'\''));
+        if (!svgoverride){
+            device->param.svgwidth = stof(buffering(svg.substr(0,pieces[0][0]),"width='",'\''));
+            device->param.svgheight = stof(buffering(svg.substr(0,pieces[0][0]),"height='",'\''));
+        }
+        parsingjoint(svg.substr(pieces[0][0], pieces[0][1]));
         device->rearjoint = parsingjoint(svg.substr(pieces[0][0], pieces[0][1]));
         device->frontjoint = parsingjoint(svg.substr(pieces[1][0], pieces[1][1]));
         device->downfloor = parsingfloor(svg.substr(pieces[2][0], pieces[2][1]),0);
@@ -735,25 +728,30 @@ void oselin_parsing(OselinDevice * device, string svg){
         else device->param.nfloors = 1;
         device->param.length = device->downfloor.width;
         device->param.height = (float)(device->downfloor.y - device->upfloor.y  - 100) /device->param.nfloors;
-        
         device->param.ncars = (int)(device->param.length/4.5);
         Parameters p;
         p.length = (float)(device->param.length/4.5);
         p.height = device->param.height;
         p.radius = 20 * device->rearwheel.radius/device->downfloor.height;
-        p.ncars = 2;
+        
+        
         p.nfloors = (float)device->param.nfloors;
+        if (p.nfloors > 1)  p.ncars = 2;
+        else  p.ncars = 2; //IMPOSSIBLE TO UNDERSTAND IF TRAILER IS MADE FOR ONE LONG CAR INSTEAD OF TWO SHORT ONES
+        if (!svgoverride){
+            p.svgwidth  = device->param.svgwidth ;  
+            p.svgheight = device->param.svgheight;
+        }
 
-        p.svgwidth  = device->param.svgwidth ;  
-        p.svgheight = device->param.svgheight;
-
-        OselinDevice *dev = oselin_init(p);
+        OselinDevice *dev = oselin_init(p,svgoverride);
         if (dev!= NULL){
-            oselin_trigonometry(dev);
+            oselin_trigonometry(dev,!svgoverride);
             (*device) = (*dev);
         }
     }
     else device->svg = "";
+
+    return device;
 }
 
 
