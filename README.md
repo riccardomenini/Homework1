@@ -12,26 +12,26 @@ In questo caso come device è stato scelto la motrice di un autotrasportatore ch
 
 ## MISURE
 Le misure richieste per la creazione dell’file “.svg” sono:
--la larghezza del pianale
--l’altezza del pianale
--la posizione x della ruota anteriore
--la posizione y della ruota posteriore
--i raggi delle ruote (che sono assunti uguali)
+- la larghezza del pianale
+- l’altezza del pianale
+- la posizione x della ruota anteriore
+- la posizione y della ruota posteriore
+- i raggi delle ruote (che sono assunti uguali)
 
 
 ## LIMITI CHE LE MISURE DEVONO RISPETTARE
 Le misure devono rispettare i seguenti limiti:
--le dimensioni del pianale non hanno alcun limite
--i raggi delle due ruote devono essere minori dell’altezza del pianale
--la ruota anteriore deve essere situata nella prima metà del pianale
--la ruota posteriore deve essere situata nella seconda metà del pianale
+- le dimensioni del pianale non hanno alcun limite
+- i raggi delle due ruote devono essere minori dell’altezza del pianale
+- la ruota anteriore deve essere situata nella prima metà del pianale
+- la ruota posteriore deve essere situata nella seconda metà del pianale
 
 
 Le misure degli altri componenti invece sono derivate dal programma, in particolare:
--la cabina si è alta 4 volte il pianale e larga 1/3
--il vetro è largo la metà della cabina e anche alto la metà, mentre è posto a 1/5 della sua altezza partendo dall’alto
--vetro, cabina e pianale sono allineati sulla linea frontale
--le ruote sono incernierate su bordo inferiore del pianale
+- la cabina si è alta 4 volte il pianale e larga 1/3
+- il vetro è largo la metà della cabina e anche alto la metà, mentre è posto a 1/5 della sua altezza partendo dall’alto
+- vetro, cabina e pianale sono allineati sulla linea frontale
+- le ruote sono incernierate su bordo inferiore del pianale
 
 
 ## USO DEL PROGRAMMA PER L’UTENTE
@@ -69,9 +69,9 @@ La seconda parte prevedeva di integrare il device costruito con un device prodot
 ## LIMITI CHE LE MISURE DEVONO RISPETTARE
 Le misure del carrello devono rispettare i limiti descritti del file README del proprietario, mentre per quando riguarda la motrice non verrano chieste misure in input in quanto tutte le misure verranno ricavate da quelle del carrello/i:
 
--la lunghezza e l'altezza del pianale vengono poste uguali rispettivamente alla lunghezza e all'altezza del pianale del carrello
--le ruote sinistra e destra vengono poste a 1/5 e 4/5 della lunghezza del pianale
--i raggi delle ruote vengono posti uguali a quelli del carrello
+- la lunghezza e l'altezza del pianale vengono poste uguali rispettivamente alla lunghezza e all'altezza del pianale del carrello
+- le ruote sinistra e destra vengono poste a 1/5 e 4/5 della lunghezza del pianale
+- i raggi delle ruote vengono posti uguali a quelli del carrello
 
 ## USO DEL PROGRAMMA PER L’UTENTE
 Per usare il programma si può seguire la semplice guida che viene stampata all’inizio di esso:
