@@ -56,7 +56,7 @@ string menini_to_svg_machine (MeniniMachine* machine, int n){
  * crea la motrice basandosi sulle misure scelte per i carrelli
  *
  * @param machine contiene i parametri dell'immagine
- * @return un puntatore a motrice
+ * @return un puntatore a machine
  */
 MeniniDevice* menini_set_motrice_in_machine(MeniniMachine* machine){
     float r = 0;
@@ -83,7 +83,7 @@ MeniniDevice* menini_set_motrice_in_machine(MeniniMachine* machine){
  * crea la machine
  *
  * @param machine contiene i parametri dell'immagine
- * @return un puntatore a motrice
+ * @return un puntatore a machine
  */
 MeniniMachine* menini_machine_create(MeniniMachine* machine){
     machine->arr = new OselinDevice* [machine->n];   // notare asterisco dopo MyDevice
@@ -143,6 +143,12 @@ string create(OselinDevice *dev){
     return "Something went wrong";
 }
 
+/**
+ * importa la machine da file
+ *
+ * @param a è la stringa letta da file  
+ * @return un puntatore a machine
+ */
 MeniniMachine* menini_parse_machine (string a){
     if (a == ""){
         return NULL; 
@@ -189,6 +195,13 @@ MeniniMachine* menini_parse_machine (string a){
 
 }
 
+/**
+ * controlla se due machine sono uguali, controllando le stringhe prodotte
+ *
+ * @param machine1 contiene i parametri dell'immagine 1
+ * @param machine2 contiene i parametri dell'immagine 2
+ * @return un un bool
+ */
 bool menini_are_equal(MeniniMachine* machine1, MeniniMachine* machine2){
     if (machine1 == NULL && machine2 == NULL){
         return true;
@@ -208,6 +221,12 @@ bool menini_are_equal(MeniniMachine* machine1, MeniniMachine* machine2){
 
 }
 
+/**
+ * cancella la memoria allocata
+ *
+ * @param machine puntatore a machine
+ * @param device puntatore a device
+ */
 void menini_delete (MeniniMachine * machine, MeniniDevice * device, bool m){
     if (device != NULL){
         delete [] device;
